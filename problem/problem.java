@@ -6,4 +6,12 @@ public class Problem {
         this.problem = problem;
         this.answer = answer;
     }
+    
+    public String getProblem() {
+        return problem;
+    }
+
+    public int getAnswer() {
+        return answer;
+    }    
 }
