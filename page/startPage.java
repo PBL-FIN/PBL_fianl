@@ -23,4 +23,18 @@ public class StartPage extends JFrame {
                 new startGame();
             }
         });      
+        
+        endButton = new JButton("종료");
+        endButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int response = JOptionPane.showConfirmDialog(null,
+                        "종료하시겠습니까?",
+                        "종료 확인",
+                        JOptionPane.YES_NO_OPTION);
+                if (response == JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                }
+            }
+        });      
 }
