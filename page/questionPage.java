@@ -22,4 +22,8 @@ public class questionPage extends JFrame {
         questionLabel.setBounds(200, 400, 1000, 50);
         yesButton.setBounds(500, 500, 100, 40);
         noButton.setBounds(700, 500, 100, 40);        
+        // 컴포넌트 추가
+        add(questionLabel);
+        add(yesButton);
+        add(noButton);        
 }
