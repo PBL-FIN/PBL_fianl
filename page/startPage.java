@@ -37,4 +37,12 @@ public class StartPage extends JFrame {
                 }
             }
         });      
+        gamePanel = new JLabel("도형 넓이 구하기 게임");
+
+        // JLabel 텍스트 크기 조정 (굵기 없음)
+        gamePanel.setFont(new Font(null, Font.PLAIN, 50)); // 폰트 설정 (글꼴, 일반, 크기)
+
+        startButton.setBounds(900, 600, 300, 50);
+        endButton.setBounds(900, 700, 300, 50);
+        gamePanel.setBounds(320, 200, 600, 60);      
 }
