@@ -45,4 +45,12 @@ public class StartPage extends JFrame {
         startButton.setBounds(900, 600, 300, 50);
         endButton.setBounds(900, 700, 300, 50);
         gamePanel.setBounds(320, 200, 600, 60);      
+       
+        add(startButton);
+        add(endButton);
+        add(gamePanel);
+        add(gamePanel);
+
+        setVisible(true);
+    }      
 }
