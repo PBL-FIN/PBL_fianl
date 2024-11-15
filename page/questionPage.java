@@ -26,4 +26,7 @@ public class questionPage extends JFrame {
         add(questionLabel);
         add(yesButton);
         add(noButton);        
+        
+        setVisible(true);
+    }        
 }
