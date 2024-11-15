@@ -14,4 +14,13 @@ public class StartPage extends JFrame {
         setSize(1280, 960);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);  
+       
+        // 게임 시작 버튼
+        startButton = new JButton("게임 시작");
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new startGame();
+            }
+        });      
 }
