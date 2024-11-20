@@ -1,17 +1,19 @@
+package page;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class StartPage extends JFrame {
+public class startPage extends JFrame {
 
     private JButton startButton;
     private JButton endButton;
-    private JLabel gamePanel;
+    private JLabel gameLabel;
 
-    public StartPage() {
+    public startPage() {
         setTitle("도형 넓이 구하는 게임!");
-        setSize(1280, 960);
+        setSize(1980, 1080);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
 
@@ -40,17 +42,17 @@ public class StartPage extends JFrame {
             }
         });
 
-        gamePanel = new JLabel("도형 넓이 구하기 게임");
-        gamePanel.setFont(new Font(null, Font.PLAIN, 50)); // 폰트 설정 (글꼴, 일반, 크기)
+        gameLabel = new JLabel("도형 넓이 구하기 게임");
+        gameLabel.setFont(new Font(null, Font.PLAIN, 50)); // 폰트 설정 (글꼴, 일반, 크기)
 
         startButton.setBounds(200, 500, 300, 50);
         endButton.setBounds(600, 500, 300, 50);
-        gamePanel.setBounds(320, 200, 600, 60);
+        gameLabel.setBounds(320, 200, 600, 60);
 
         add(startButton);
         add(endButton);
-        add(gamePanel);
-
+        add(gameLabel);
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 }
