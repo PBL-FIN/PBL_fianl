@@ -28,4 +28,15 @@ public class difficultyPage extends JFrame {
                 new hintPage();
             }
         });        
+        
+        easy = new JButton("쉬움");
+        easy.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String difficulty = e.getActionCommand();
+                JOptionPane.showMessageDialog(null, difficulty + "으로 결정하겠습니까?");
+                dispose();
+                new hintPage();
+            }
+        });        
 }
