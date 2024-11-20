@@ -46,5 +46,9 @@ public class difficultyPage extends JFrame {
         easy.setBounds(700, 700, 200, 200);
         add(difficulty);
         add(normal);
-        add(easy);        
+        add(easy);     
+        
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }        
 }
