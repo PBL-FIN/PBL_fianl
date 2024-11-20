@@ -38,5 +38,13 @@ public class difficultyPage extends JFrame {
                 dispose();
                 new hintPage();
             }
-        });        
+        });  
+        
+        difficulty.setFont(new Font(null, Font.PLAIN, 50));
+        difficulty.setBounds(200, 400, 1000, 50);
+        normal.setBounds(500, 500, 100, 100);
+        easy.setBounds(700, 700, 200, 200);
+        add(difficulty);
+        add(normal);
+        add(easy);        
 }
