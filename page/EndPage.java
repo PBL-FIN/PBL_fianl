@@ -15,4 +15,3 @@ public class EndPage extends JFrame{
         setLayout(null);
     }
 }
-
