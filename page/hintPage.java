@@ -1,7 +1,4 @@
-package page;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class hintPage extends JFrame {
     private JLabel tip;
@@ -16,6 +13,13 @@ public class hintPage extends JFrame {
         tip.setFont(new Font(null, Font.PLAIN, 50));
         tip.setBounds(200, 400, 1500, 50);
         start = new JButton("게임시작");
+        start.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                new easyQuizPage();
+            }
+        });
         start.setBounds(500, 500, 100, 100);
 
         add(tip);
