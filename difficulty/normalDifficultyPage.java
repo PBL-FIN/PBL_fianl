@@ -26,3 +26,16 @@ public class normalDifficultyPage extends JFrame {
         JLabel difficultyLabel = new JLabel("보통");
         difficultyLabel.setBounds(20, 10, 100, 25);
         add(difficultyLabel);
+        
+        scoreManager = new scoreManager();
+        scoreLabel = new JLabel("점수 : " + scoreManager.getScore());
+        scoreLabel.setBounds(140, 10, 100, 25);
+        add(scoreLabel);
+
+        shapeLabel = new JLabel();
+        shapeLabel.setBounds(150, 50, 200, 200);
+        add(shapeLabel);
+        sizeLabel = new JLabel();
+        sizeLabel.setBounds(150, 260, 200, 25);
+        add(sizeLabel);
+        displayRandomShape(shapeLabel, sizeLabel);
