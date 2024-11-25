@@ -39,3 +39,14 @@ public class normalDifficultyPage extends JFrame {
         sizeLabel.setBounds(150, 260, 200, 25);
         add(sizeLabel);
         displayRandomShape(shapeLabel, sizeLabel);
+
+        JLabel answerLabel = new JLabel("정답: ");
+        answerLabel.setBounds(300,300,200,300);
+        JTextField jTextField = new JTextField(10);
+        jTextField.setBounds(600,600,100,100);
+        add(answerLabel);
+        add(jTextField);
+
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
