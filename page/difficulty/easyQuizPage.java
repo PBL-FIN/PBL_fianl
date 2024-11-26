@@ -33,3 +33,12 @@ public class easyQuizPage extends JFrame {
         JLabel difficultyLabel = new JLabel("쉬움");
         difficultyLabel.setBounds(20, 10, 100, 25);
         add(difficultyLabel);
+        
+        scoreManager = new scoreManager();
+        scoreLabel = new JLabel("점수 : " + scoreManager.getScore());
+        scoreLabel.setBounds(140, 10, 100, 25);
+        add(scoreLabel);
+
+        shapeLabel = new JLabel();
+        shapeLabel.setBounds(150, 50, 200, 200);
+        add(shapeLabel);
