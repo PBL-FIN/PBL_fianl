@@ -74,3 +74,11 @@ public class easyQuizPage extends JFrame {
                 checkAnswer(Double.parseDouble(options[2]));
             }
         });        
+
+        option1.setBounds(300, 150, 80, 40);
+        option2.setBounds(400, 150, 80, 40);
+        option3.setBounds(500, 150, 80, 40);
+
+        add(option1);
+        add(option2);
+        add(option3);    
