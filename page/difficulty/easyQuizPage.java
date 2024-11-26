@@ -92,3 +92,21 @@ public class easyQuizPage extends JFrame {
         String imagePath = "";
         String sizeText = "";
         String selectedShape = shapes[random.nextInt(shapes.length)];    
+        switch (selectedShape) {
+            case "삼각형":
+                imagePath = "src//img//triangle.png";
+                int base = (random.nextInt(4) + 1) * 2;
+                int height = (random.nextInt(4) + 1) * 2;
+                sizeText = "밑변: " + base + ", 높이: " + height;
+                answer = (double) (base * height) / 2;
+                solutionProcess = "넓이 = (밑변 " + base + " * 높이 " + height + ") / 2";
+                break;
+            case "사각형":
+                imagePath = "src//img//rectangle.png";
+                int side1 = random.nextInt(4) + 1;
+                int side2 = random.nextInt(4) + 1;
+                sizeText = "한변: " + side1 + ", 한변: " + side2;
+                answer = side1 * side2;
+                solutionProcess = "넓이 = (한변 " + side1 + " * 한변 " + side2 + ")";
+                break;
+        }
