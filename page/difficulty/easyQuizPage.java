@@ -42,3 +42,12 @@ public class easyQuizPage extends JFrame {
         shapeLabel = new JLabel();
         shapeLabel.setBounds(150, 50, 200, 200);
         add(shapeLabel);
+
+        sizeLabel = new JLabel();
+        sizeLabel.setBounds(150, 260, 200, 25);
+        add(sizeLabel);
+        displayRandomShape(shapeLabel, sizeLabel);
+
+        JLabel questionLabel = new JLabel("이 도형의 넓이는 얼마인가요?");
+        questionLabel.setBounds(400, 50, 300, 25);
+        add(questionLabel);
