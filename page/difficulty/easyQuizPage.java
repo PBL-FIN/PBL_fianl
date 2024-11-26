@@ -62,3 +62,15 @@ public class easyQuizPage extends JFrame {
                 checkAnswer(Double.parseDouble(options[0]));
             }
         });
+        option2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                checkAnswer(Double.parseDouble(options[1]));
+            }
+        });
+        option3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                checkAnswer(Double.parseDouble(options[2]));
+            }
+        });        
