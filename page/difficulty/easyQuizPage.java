@@ -110,3 +110,11 @@ public class easyQuizPage extends JFrame {
                 solutionProcess = "넓이 = (한변 " + side1 + " * 한변 " + side2 + ")";
                 break;
         }
+        
+        ImageIcon originalIcon = new ImageIcon(imagePath);
+        Image scaledImage = originalIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        shapeLabel.setIcon(new ImageIcon(scaledImage));
+        sizeLabel.setText(sizeText);
+
+        generateOptions(selectedShape);
+    }      
