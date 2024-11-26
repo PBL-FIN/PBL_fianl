@@ -128,3 +128,12 @@ public class easyQuizPage extends JFrame {
             }
         }
     }    
+    public void checkAnswer(double answerValue) {
+        if (answer == answerValue) {
+            scoreManager.addScore(10);
+            new answerPage(this, pageLoadingManager);
+        } else {
+            new inCorrectAnswerPage(solutionProcess, answer, this, pageLoadingManager);
+        }
+    }
+}
