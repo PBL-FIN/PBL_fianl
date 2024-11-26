@@ -118,3 +118,13 @@ public class easyQuizPage extends JFrame {
 
         generateOptions(selectedShape);
     }      
+    public void generateOptions(String selectedShape) {
+        options = new String[3];
+        int correctIndex = random.nextInt(3);
+        options[correctIndex] = String.valueOf(answer);
+        for (int i = 0; i < options.length; i++) {
+            if (i != correctIndex) {
+                options[i] = String.valueOf(answer + random.nextInt(5) + 2);
+            }
+        }
+    }    
