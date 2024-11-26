@@ -51,3 +51,14 @@ public class easyQuizPage extends JFrame {
         JLabel questionLabel = new JLabel("이 도형의 넓이는 얼마인가요?");
         questionLabel.setBounds(400, 50, 300, 25);
         add(questionLabel);
+
+        JButton option1 = new JButton(options[0]);
+        JButton option2 = new JButton(options[1]);
+        JButton option3 = new JButton(options[2]);
+
+        option1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                checkAnswer(Double.parseDouble(options[0]));
+            }
+        });
