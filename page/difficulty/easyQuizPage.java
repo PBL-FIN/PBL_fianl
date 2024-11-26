@@ -82,3 +82,13 @@ public class easyQuizPage extends JFrame {
         add(option1);
         add(option2);
         add(option3);    
+
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
+    public void displayRandomShape(JLabel shapeLabel, JLabel sizeLabel) {
+        random = new Random();
+        String imagePath = "";
+        String sizeText = "";
+        String selectedShape = shapes[random.nextInt(shapes.length)];    
