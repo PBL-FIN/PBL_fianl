@@ -25,3 +25,11 @@ public class easyQuizPage extends JFrame {
     public easyQuizPage(PageLoadingManager pageLoadingManager) {
         this.pageLoadingManager = pageLoadingManager;
 
+        setTitle("도형 넓이 구하는 게임!");
+        setSize(1980, 1080);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(null);
+
+        JLabel difficultyLabel = new JLabel("쉬움");
+        difficultyLabel.setBounds(20, 10, 100, 25);
+        add(difficultyLabel);
