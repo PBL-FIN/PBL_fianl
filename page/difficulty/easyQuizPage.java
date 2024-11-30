@@ -33,7 +33,7 @@ public class easyQuizPage extends JFrame {
         JLabel difficultyLabel = new JLabel("쉬움");
         difficultyLabel.setBounds(20, 10, 100, 25);
         add(difficultyLabel);
-        
+
         scoreManager = new scoreManager();
         scoreLabel = new JLabel("점수 : " + scoreManager.getScore());
         scoreLabel.setBounds(140, 10, 100, 25);
@@ -73,7 +73,7 @@ public class easyQuizPage extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 checkAnswer(Double.parseDouble(options[2]));
             }
-        });        
+        });
 
         option1.setBounds(300, 150, 80, 40);
         option2.setBounds(400, 150, 80, 40);
@@ -81,7 +81,7 @@ public class easyQuizPage extends JFrame {
 
         add(option1);
         add(option2);
-        add(option3);    
+        add(option3);
 
         setLocationRelativeTo(null);
         setVisible(true);
@@ -91,7 +91,8 @@ public class easyQuizPage extends JFrame {
         random = new Random();
         String imagePath = "";
         String sizeText = "";
-        String selectedShape = shapes[random.nextInt(shapes.length)];    
+        String selectedShape = shapes[random.nextInt(shapes.length)];
+
         switch (selectedShape) {
             case "삼각형":
                 imagePath = "src//img//triangle.png";
@@ -110,14 +111,14 @@ public class easyQuizPage extends JFrame {
                 solutionProcess = "넓이 = (한변 " + side1 + " * 한변 " + side2 + ")";
                 break;
         }
-        
         ImageIcon originalIcon = new ImageIcon(imagePath);
         Image scaledImage = originalIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         shapeLabel.setIcon(new ImageIcon(scaledImage));
         sizeLabel.setText(sizeText);
 
         generateOptions(selectedShape);
-    }      
+    }
+
     public void generateOptions(String selectedShape) {
         options = new String[3];
         int correctIndex = random.nextInt(3);
@@ -127,7 +128,8 @@ public class easyQuizPage extends JFrame {
                 options[i] = String.valueOf(answer + random.nextInt(5) + 2);
             }
         }
-    }    
+    }
+
     public void checkAnswer(double answerValue) {
         if (answer == answerValue) {
             scoreManager.addScore(10);
