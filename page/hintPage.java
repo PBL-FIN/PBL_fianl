@@ -1,3 +1,11 @@
+package page;
+
+import page.difficulty.easyQuizPage;
+import problem.PageLoadingManager;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class hintPage extends JFrame {
@@ -17,7 +25,8 @@ public class hintPage extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                new easyQuizPage();
+                PageLoadingManager pageLoadingManager = new PageLoadingManager();
+                new easyQuizPage(pageLoadingManager);
             }
         });
         start.setBounds(500, 500, 100, 100);
