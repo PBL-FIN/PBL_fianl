@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 
 public class ShapeSelectionPage {
     private JFrame frame;
+
     public ShapeSelectionPage() {
         // 프레임 생성
         frame = new JFrame("도형 선택 화면");
