@@ -1,4 +1,7 @@
-package page;
+package page.difficulty;
+
+import page.hintPage;
+import problem.PageLoadingManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,6 +12,7 @@ public class difficultyPage extends JFrame {
     private JLabel difficulty;
     private JButton normal;
     private JButton easy;
+    private PageLoadingManager pageLoadingManager;
 
     public difficultyPage() {
         setTitle("도형 넓이 구하는 게임!");
@@ -24,7 +28,7 @@ public class difficultyPage extends JFrame {
                 String difficulty = e.getActionCommand();
                 JOptionPane.showMessageDialog(null, difficulty + "으로 결정하겠습니까?");
                 dispose();
-                new hintPage();
+                new normalDifficultyPage(pageLoadingManager);
             }
         });
         easy = new JButton("쉬움");
