@@ -85,11 +85,9 @@ public class easyQuizPage extends JFrame {
         add(option2);
         add(option3);
         
-        hint = new JButton(new ImageIcon("PBL_fianl-main/img/ping.png"));
+        hint = new JButton(new ImageIcon("img/ping.png"));
         hint.setBounds(1000, 150, 300, 300);
         hint.setBorderPainted(false);
-        hint.setContentAreaFilled(false);
-        hint.setFocusPainted(false);
         hint.addActionListener(e -> showHint());
         add(hint);
 
@@ -157,6 +155,7 @@ public class easyQuizPage extends JFrame {
         JOptionPane.showMessageDialog(this, hintMessage, "힌트핑", JOptionPane.INFORMATION_MESSAGE);
     }
 }
+
 
 
 
