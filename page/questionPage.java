@@ -52,3 +52,4 @@ public class questionPage extends JFrame {
         setVisible(true);
     }
 }
+
