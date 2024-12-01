@@ -4,9 +4,10 @@ import page.alert.answerPage;
 import page.alert.inCorrectAnswerPage;
 import problem.PageLoadingManager;
 import problem.scoreManager;
-
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Random;
 
 public class easyQuizPage extends JFrame {
@@ -53,9 +54,9 @@ public class easyQuizPage extends JFrame {
         questionLabel.setBounds(400, 50, 300, 25);
         add(questionLabel);
 
-        JButton option1 = new JButton();
-        JButton option2 = new JButton();
-        JButton option3 = new JButton();
+        JButton option1 = new JButton(options[0]);
+        JButton option2 = new JButton(options[1]);
+        JButton option3 = new JButton(options[2]);
 
         option1.addActionListener(new ActionListener() {
             @Override
@@ -104,7 +105,7 @@ public class easyQuizPage extends JFrame {
 
         switch (selectedShape) {
             case "삼각형":
-                imagePath = "src//img//triangle.png";
+                imagePath = "img//triangle.png";
                 int base = (random.nextInt(4) + 1) * 2;
                 int height = (random.nextInt(4) + 1) * 2;
                 sizeText = "밑변: " + base + ", 높이: " + height;
@@ -114,7 +115,7 @@ public class easyQuizPage extends JFrame {
                 break;
            
             case "사각형":
-                imagePath = "src//img//rectangle.png";
+                imagePath = "img//rectangle.png";
                 int side1 = random.nextInt(4) + 1;
                 int side2 = random.nextInt(4) + 1;
                 sizeText = "한변: " + side1 + ", 한변: " + side2;
@@ -128,10 +129,9 @@ public class easyQuizPage extends JFrame {
         Image scaledImage = originalIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         shapeLabel.setIcon(new ImageIcon(scaledImage));
         sizeLabel.setText(sizeText);
-    }
 
         generateOptions(selectedShape);
-    }
+        }
 
     public void generateOptions(String selectedShape) {
         options = new String[3];
@@ -157,5 +157,6 @@ public class easyQuizPage extends JFrame {
         JOptionPane.showMessageDialog(this, hintMessage, "힌트핑", JOptionPane.INFORMATION_MESSAGE);
     }
 }
+
 
 
