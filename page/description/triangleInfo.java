@@ -47,4 +47,4 @@ public class triangleInfo {
         });
         panel.add(backButton, BorderLayout.SOUTH);
     }
-}page/description 경로 triangleInfo.java 생성하신 뒤에 붙여 넣기 하시면 됩니다
+}

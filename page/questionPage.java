@@ -1,5 +1,7 @@
 package page;
 
+import page.difficulty.difficultyPage;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -34,6 +36,8 @@ public class questionPage extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null, "좋습니다! 도형의 넓이에 대해 알아보겠습니다.");
+                dispose();
+                new ShapeSelectionPage();
             }
         });
         questionLabel.setFont(new Font(null, Font.PLAIN, 50));
