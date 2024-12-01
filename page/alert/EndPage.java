@@ -11,7 +11,6 @@ import java.awt.event.ActionListener;
 public class EndPage extends JFrame{
     private JLabel result;
     private JLabel score;
-    private JButton restart;
     private JButton goToMenu;
     private scoreManager scoreManager;
     public EndPage() {
