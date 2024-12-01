@@ -59,3 +59,4 @@ public class difficultyPage extends JFrame {
         setVisible(true);
     }
 }
+

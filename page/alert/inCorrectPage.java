@@ -44,3 +44,4 @@ public class inCorrectAnswerPage extends JFrame {
         setVisible(true);
     }
 }
+
