@@ -64,7 +64,6 @@ public class normalDifficultyPage extends JFrame {
                     double userAnswer = Double.parseDouble(jTextField.getText());
                     if (Math.abs(userAnswer - answer) < 0.01) {
                         JOptionPane.showMessageDialog(null, "정답입니다!");
-                        JOptionPane.showMessageDialog(null, solutionProcess);
                         scoreManager.addScore(20);
                         scoreLabel.setText("점수 : " + scoreManager.getScore());
                         questionCount++;
@@ -72,13 +71,21 @@ public class normalDifficultyPage extends JFrame {
                         if (questionCount < 6) {
                             displayRandomShape(shapeLabel, sizeLabel);
                             jTextField.setText("");
-
                         } else {
                             dispose();
                             new EndPage();
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null, "틀렸습니다. 다시 시도하세요.");
+                        JOptionPane.showMessageDialog(null, "틀렸습니다.");
+                        JOptionPane.showMessageDialog(null, solutionProcess);
+                        questionCount++;
+                        if (questionCount < 6) {
+                            displayRandomShape(shapeLabel, sizeLabel);
+                            jTextField.setText("");
+                        } else {
+                            dispose();
+                            new EndPage();
+                        }
                     }
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "유효한 숫자를 입력하세요.");
@@ -122,7 +129,6 @@ public class normalDifficultyPage extends JFrame {
                 answer = Math.round((r * r * 3.14) * 100.0) / 100.0;
                 solutionProcess = "원 넓이 = (π * r ^ 2)";
                 break;
-
         }
         ImageIcon originalIcon = new ImageIcon(imagePath);
         Image scaledImage = originalIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
