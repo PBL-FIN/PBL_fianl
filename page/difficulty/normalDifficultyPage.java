@@ -98,7 +98,7 @@ public class normalDifficultyPage extends JFrame {
 
         switch (selectedShape) {
             case "삼각형":
-                imagePath = "PBL_fianl-main/img/triangle 2.png";
+                imagePath = "img/triangle 2.png";
                 int base = (random.nextInt(5) + 1) * 2;
                 int height = (random.nextInt(5) + 1) * 2;
                 sizeText = "삼각형의 넓이를 구하시오. a: " + base + ", h: " + height;
@@ -107,7 +107,7 @@ public class normalDifficultyPage extends JFrame {
                 break;
 
             case "사각형":
-                imagePath = "PBL_fianl-main/img/rectangle 2.png";
+                imagePath = "img/rectangle 2.png";
                 int side1 = random.nextInt(4) + 1;
                 int side2 = random.nextInt(4) + 1;
                 sizeText = "사각형의 넓이를 구하시오. a: " + side1 + ", b: " + side2;
@@ -116,7 +116,7 @@ public class normalDifficultyPage extends JFrame {
                 break;
 
             case "원":
-                imagePath = "PBL_fianl-main/img/one 2.png";
+                imagePath = "img/one 2.png";
                 int r = random.nextInt(10) + 1; //
                 sizeText = "원의 넓이를 구하고 소수 둘째자리에서 반올림하시오. r: " + r;
                 answer = Math.round((r * r * 3.14) * 100.0) / 100.0;
