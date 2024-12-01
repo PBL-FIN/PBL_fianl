@@ -4,10 +4,9 @@ import page.alert.answerPage;
 import page.alert.inCorrectAnswerPage;
 import problem.PageLoadingManager;
 import problem.scoreManager;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Random;
 
 public class easyQuizPage extends JFrame {
@@ -21,6 +20,8 @@ public class easyQuizPage extends JFrame {
     private JLabel shapeLabel;
     private JLabel sizeLabel;
     private PageLoadingManager pageLoadingManager;
+    private JButton hint;
+    private String hintMessage;
 
     public easyQuizPage(PageLoadingManager pageLoadingManager) {
         this.pageLoadingManager = pageLoadingManager;
@@ -52,9 +53,9 @@ public class easyQuizPage extends JFrame {
         questionLabel.setBounds(400, 50, 300, 25);
         add(questionLabel);
 
-        JButton option1 = new JButton(options[0]);
-        JButton option2 = new JButton(options[1]);
-        JButton option3 = new JButton(options[2]);
+        JButton option1 = new JButton();
+        JButton option2 = new JButton();
+        JButton option3 = new JButton();
 
         option1.addActionListener(new ActionListener() {
             @Override
@@ -74,7 +75,7 @@ public class easyQuizPage extends JFrame {
                 checkAnswer(Double.parseDouble(options[2]));
             }
         });
-
+       
         option1.setBounds(300, 150, 80, 40);
         option2.setBounds(400, 150, 80, 40);
         option3.setBounds(500, 150, 80, 40);
@@ -82,6 +83,14 @@ public class easyQuizPage extends JFrame {
         add(option1);
         add(option2);
         add(option3);
+        
+        hint = new JButton(new ImageIcon("PBL_fianl-main/img/ping.png"));
+        hint.setBounds(1000, 150, 300, 300);
+        hint.setBorderPainted(false);
+        hint.setContentAreaFilled(false);
+        hint.setFocusPainted(false);
+        hint.addActionListener(e -> showHint());
+        add(hint);
 
         setLocationRelativeTo(null);
         setVisible(true);
@@ -101,7 +110,9 @@ public class easyQuizPage extends JFrame {
                 sizeText = "밑변: " + base + ", 높이: " + height;
                 answer = (double) (base * height) / 2;
                 solutionProcess = "넓이 = (밑변 " + base + " * 높이 " + height + ") / 2";
+                hintMessage = "삼각형 넓이는 ( □ x □ ) / 2 야~ ";
                 break;
+           
             case "사각형":
                 imagePath = "src//img//rectangle.png";
                 int side1 = random.nextInt(4) + 1;
@@ -109,12 +120,15 @@ public class easyQuizPage extends JFrame {
                 sizeText = "한변: " + side1 + ", 한변: " + side2;
                 answer = side1 * side2;
                 solutionProcess = "넓이 = (한변 " + side1 + " * 한변 " + side2 + ")";
+                hintMessage = "사각형의 넓이는 ( □ x □ ) 야~ ";
                 break;
         }
+
         ImageIcon originalIcon = new ImageIcon(imagePath);
         Image scaledImage = originalIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         shapeLabel.setIcon(new ImageIcon(scaledImage));
         sizeLabel.setText(sizeText);
+    }
 
         generateOptions(selectedShape);
     }
@@ -129,7 +143,7 @@ public class easyQuizPage extends JFrame {
             }
         }
     }
-
+    
     public void checkAnswer(double answerValue) {
         if (answer == answerValue) {
             scoreManager.addScore(10);
@@ -137,6 +151,10 @@ public class easyQuizPage extends JFrame {
         } else {
             new inCorrectAnswerPage(solutionProcess, answer, this, pageLoadingManager);
         }
+    }
+
+    public void showHint() {
+        JOptionPane.showMessageDialog(this, hintMessage, "힌트핑", JOptionPane.INFORMATION_MESSAGE);
     }
 }
 

@@ -25,20 +25,25 @@ public class difficultyPage extends JFrame {
         normal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String difficulty = e.getActionCommand();
-                JOptionPane.showMessageDialog(null, difficulty + "으로 결정하겠습니까?");
-                dispose();
-                new normalDifficultyPage(pageLoadingManager);
+                String selectedDifficulty = e.getActionCommand();
+                int response = JOptionPane.showConfirmDialog(null, selectedDifficulty + "으로 결정하겠습니까?", "난이도 선택", JOptionPane.YES_NO_OPTION);
+                if (response == JOptionPane.YES_OPTION) {
+                    dispose();
+                    new normalDifficultyPage(pageLoadingManager);
+                }
             }
         });
+
         easy = new JButton("쉬움");
         easy.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String difficulty = e.getActionCommand();
-                JOptionPane.showMessageDialog(null, difficulty + "으로 결정하겠습니까?");
-                dispose();
-                new hintPage();
+                String selectedDifficulty = e.getActionCommand();
+                int response = JOptionPane.showConfirmDialog(null, selectedDifficulty + "으로 결정하겠습니까?", "난이도 선택", JOptionPane.YES_NO_OPTION);
+                if (response == JOptionPane.YES_OPTION) {
+                    dispose();
+                    new hintPage();
+                }
             }
         });
 
