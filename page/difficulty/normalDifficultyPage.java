@@ -8,7 +8,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 public class normalDifficultyPage extends JFrame {
     private scoreManager scoreManager;
@@ -19,6 +21,7 @@ public class normalDifficultyPage extends JFrame {
     private double answer;
     private String solutionProcess;
     private int questionCount = 0;
+    private Set<String> usedQuestions; // 사용된 문제를 저장하는 Set
 
     public normalDifficultyPage(PageLoadingManager pageLoadingManager) {
         setTitle("도형 넓이 구하는 게임!");
@@ -40,9 +43,10 @@ public class normalDifficultyPage extends JFrame {
         add(shapeLabel);
 
         sizeLabel = new JLabel();
-        sizeLabel.setBounds(150, 260, 350, 25);
+        sizeLabel.setBounds(150, 260, 500, 25);
         add(sizeLabel);
 
+        usedQuestions = new HashSet<>(); // 사용된 문제 초기화
         displayRandomShape(shapeLabel, sizeLabel);
 
         JLabel answerLabel = new JLabel("정답: ");
@@ -101,35 +105,45 @@ public class normalDifficultyPage extends JFrame {
         Random random = new Random();
         String imagePath = "";
         String sizeText = "";
-        String selectedShape = shapes[random.nextInt(shapes.length)];
+        String selectedShape;
+        int base = 0, height = 0, side1 = 0, side2 = 0, r = 0;
+
+        do {
+            selectedShape = shapes[random.nextInt(shapes.length)];
+            if (selectedShape.equals("삼각형")) {
+                base = (random.nextInt(5) + 1) * 2;
+                height = (random.nextInt(5) + 1) * 2;
+                sizeText = "삼각형의 넓이를 구하시오. a: " + base + ", h: " + height;
+                answer = (double) (base * height) / 2;
+                solutionProcess = "삼각형 넓이 = (a * h) / 2";
+            } else if (selectedShape.equals("사각형")) {
+                side1 = random.nextInt(4) + 1;
+                side2 = random.nextInt(4) + 1;
+                sizeText = "사각형의 넓이를 구하시오. a: " + side1 + ", b: " + side2;
+                answer = side1 * side2;
+                solutionProcess = "사각형 넓이 = (a * b)";
+            } else if (selectedShape.equals("원")) {
+                r = random.nextInt(3) + 1;
+                sizeText = "원의 넓이를 구하고 소수 둘째자리에서 반올림하시오. (π = 3.14) r: " + r;
+                answer = Math.round((r * r * Math.PI) * 100.0) / 100.0;
+                solutionProcess = "원 넓이 = (π * r ^ 2)";
+            }
+        } while (usedQuestions.contains(sizeText)); // 이미 출제된 문제인지 확인
+
+        usedQuestions.add(sizeText); // 새로운 문제 추가
 
         switch (selectedShape) {
             case "삼각형":
                 imagePath = "PBL_fianl-main/img/triangle 2.png";
-                int base = (random.nextInt(5) + 1) * 2;
-                int height = (random.nextInt(5) + 1) * 2;
-                sizeText = "삼각형의 넓이를 구하시오. a: " + base + ", h: " + height;
-                answer = (double) (base * height) / 2;
-                solutionProcess = "삼각형 넓이 = (a * h) / 2";
                 break;
-
             case "사각형":
                 imagePath = "PBL_fianl-main/img/rectangle 2.png";
-                int side1 = random.nextInt(4) + 1;
-                int side2 = random.nextInt(4) + 1;
-                sizeText = "사각형의 넓이를 구하시오. a: " + side1 + ", b: " + side2;
-                answer = side1 * side2;
-                solutionProcess = "사각형 넓이 = (a * b)";
                 break;
-
             case "원":
                 imagePath = "PBL_fianl-main/img/one 2.png";
-                int r = random.nextInt(10) + 1; //
-                sizeText = "원의 넓이를 구하고 소수 둘째자리에서 반올림하시오. r: " + r;
-                answer = Math.round((r * r * 3.14) * 100.0) / 100.0;
-                solutionProcess = "원 넓이 = (π * r ^ 2)";
                 break;
         }
+
         ImageIcon originalIcon = new ImageIcon(imagePath);
         Image scaledImage = originalIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
         shapeLabel.setIcon(new ImageIcon(scaledImage));
