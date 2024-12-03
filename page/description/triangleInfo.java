@@ -30,23 +30,23 @@ public class triangleInfo {
         panel.add(titleLabel);
 
         // 캐릭터 이미지
-        ImageIcon characterIcon = new ImageIcon(""); // 캐릭터 이미지 경로 설정 필요
+        ImageIcon characterIcon = new ImageIcon("img/ping4.png"); // 캐릭터 이미지 경로 설정 필요
         Image characterImg = characterIcon.getImage().getScaledInstance(170, 300, Image.SCALE_SMOOTH);
         JLabel characterLabel = new JLabel(new ImageIcon(characterImg));
         characterLabel.setBounds(30, 30, 200, 300);
         panel.add(characterLabel);
 
         // 삼각형 이미지
-        ImageIcon circleIcon = new ImageIcon(""); // 이미지 경로 설정 필요
-        Image circleImg = circleIcon.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH);
-        JLabel circleLabel = new JLabel(new ImageIcon(circleImg));
+        ImageIcon triangleIcon = new ImageIcon("img/triangle.png"); // 이미지 경로 설정 필요
+        Image triangleImg = triangleIcon.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH);
+        JLabel circleLabel = new JLabel(new ImageIcon(triangleImg));
         circleLabel.setBounds(270, 0, 200, 200);
         panel.add(circleLabel);
 
-        // 설명 텍스트
-         JLabel descriptionLabel = new JLabel("<html>삼각형이 무엇일까요?<br>세 개의 변과 세 개의 각을 가지고 있는 도형<br><br>삼각형의 넓이를 구하는 공식은 어떻게 구할까요?<br>밑변 x 높이 x 1/2</html>");
+         // 글씨 크기 및 폰트 설정
+        JLabel descriptionLabel = new JLabel("<html>삼각형이 무엇일까요?<br>세 개의 변과 세 개의 각을 가지고 있는 도형<br><br>삼각형의 넓이를 구하는 공식은 어떻게 구할까요?<br>밑변 x 높이 x 1/2</html>");
         descriptionLabel.setBounds(250, 150, 330, 150);
-        descriptionLabel.setFont(new Font("Serif", Font.PLAIN, 15));  // 글씨 크기 및 폰트 설정
+        descriptionLabel.setFont(new Font(null, Font.PLAIN, 15));  // 글씨 크기 및 폰트 설정
         descriptionLabel.setHorizontalAlignment(SwingConstants.LEFT);
         panel.add(descriptionLabel);
 

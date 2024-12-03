@@ -12,9 +12,10 @@ public class difficultyPage extends JFrame {
     private JLabel difficulty;
     private JButton normal;
     private JButton easy;
-    private PageLoadingManager pageLoadingManager;
+    private PageLoadingManager pageLoadingManager = new PageLoadingManager();
 
     public difficultyPage() {
+
         setTitle("도형 넓이 구하는 게임!");
         setSize(1980, 1080);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

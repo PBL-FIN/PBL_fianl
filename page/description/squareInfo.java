@@ -24,28 +24,27 @@ public class squareInfo {
         // 제목 라벨
         JLabel titleLabel = new JLabel();
         titleLabel.setBounds(200, 10, 200, 30);
-        titleLabel.setFont(new Font("Serif", Font.BOLD, 16));  // 글씨 크기 및 폰트 설정
+        titleLabel.setFont(new Font(null, Font.BOLD, 16));  // 글씨 크기 및 폰트 설정
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         panel.add(titleLabel);
 
         // 캐릭터 이미지
-        ImageIcon characterIcon = new ImageIcon(""); // 캐릭터 이미지 경로 설정 필요
+        ImageIcon characterIcon = new ImageIcon("img/ping4.png"); // 캐릭터 이미지 경로 설정 필요
         Image characterImg = characterIcon.getImage().getScaledInstance(170, 300, Image.SCALE_SMOOTH);
         JLabel characterLabel = new JLabel(new ImageIcon(characterImg));
         characterLabel.setBounds(30, 30, 200, 300);
         panel.add(characterLabel);
 
         // 사각형 이미지
-        ImageIcon circleIcon = new ImageIcon(""); // 이미지 경로 설정 필요
-        Image circleImg = circleIcon.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH);
-        JLabel circleLabel = new JLabel(new ImageIcon(circleImg));
+        ImageIcon square = new ImageIcon("img/rectangle.png"); // 이미지 경로 설정 필요
+        Image squareImg = square.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH);
+        JLabel circleLabel = new JLabel(new ImageIcon(squareImg));
         circleLabel.setBounds(270, 0, 200, 200);
         panel.add(circleLabel);
-
-        // 설명 텍스트
-         JLabel descriptionLabel = new JLabel("<html>사각형이 무엇일까요?<br>네 게의 꼭짓점이 있고 선분으로 둘러쌓인 도형<br><br>사각형의 넓이를 구하는 공식은 어떻게 구할까요?<br>밑변 x 높이</html>");
+  // 글씨 크기 및 폰트 설정
+        JLabel descriptionLabel = new JLabel("<html>사각형이 무엇일까요?<br>네 게의 꼭짓점이 있고 선분으로 둘러쌓인 도형<br><br>사각형의 넓이를 구하는 공식은 어떻게 구할까요?<br>밑변 x 높이</html>");
         descriptionLabel.setBounds(250, 150, 330, 150);
-        descriptionLabel.setFont(new Font("Serif", Font.PLAIN, 15));  // 글씨 크기 및 폰트 설정
+        descriptionLabel.setFont(new Font(null, Font.PLAIN, 15));  // 글씨 크기 및 폰트 설정
         descriptionLabel.setHorizontalAlignment(SwingConstants.LEFT);
         panel.add(descriptionLabel);
 

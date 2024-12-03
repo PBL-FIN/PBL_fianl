@@ -1,6 +1,6 @@
 package page.alert;
 
-import page.difficulty.easyQuizPage;
+import page.difficulty.normalDifficultyPage;
 import problem.PageLoadingManager;
 
 import javax.swing.*;
@@ -8,10 +8,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class answerPage extends JFrame {
+public class normalAnswerPage extends JFrame {
     private PageLoadingManager pageLoadingManager;
 
-    public answerPage(easyQuizPage easyPage, PageLoadingManager pageLoadingManager) {
+    public normalAnswerPage(normalDifficultyPage normalDifficultyPage, PageLoadingManager pageLoadingManager) {
         this.pageLoadingManager = pageLoadingManager;
 
         JFrame frame = new JFrame("정답 화면");
@@ -27,13 +27,13 @@ public class answerPage extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                easyPage.dispose();
+                normalDifficultyPage.dispose();
 
                 pageLoadingManager.addCnt();
-                if (pageLoadingManager.getLoadingCnt() >= easyPage.getProblemLength()) {
+                if (pageLoadingManager.getLoadingCnt() >= normalDifficultyPage.getLength()) {
                     new EndPage();
                 } else {
-                    new easyQuizPage(pageLoadingManager);
+                    new normalDifficultyPage(pageLoadingManager);
                 }
             }
         });

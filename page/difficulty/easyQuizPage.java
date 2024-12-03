@@ -94,6 +94,9 @@ public class easyQuizPage extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
     }
+    public int getProblemLength() {
+        return shapes.length;
+    }
 
     public void displayRandomShape(JLabel shapeLabel, JLabel sizeLabel) {
         random = new Random();
@@ -129,7 +132,7 @@ public class easyQuizPage extends JFrame {
         sizeLabel.setText(sizeText);
 
         generateOptions(selectedShape);
-        }
+    }
 
     public void generateOptions(String selectedShape) {
         options = new String[3];

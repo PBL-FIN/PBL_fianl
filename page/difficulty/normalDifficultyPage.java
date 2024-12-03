@@ -1,14 +1,16 @@
 package page.difficulty;
 
-import page.alert.EndPage;
+import page.alert.normalIncorrectAnswerPage;
+import page.alert.normalAnswerPage;
 import problem.PageLoadingManager;
 import problem.scoreManager;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Random;
+import java.util.List;
 
 public class normalDifficultyPage extends JFrame {
     private scoreManager scoreManager;
@@ -18,9 +20,11 @@ public class normalDifficultyPage extends JFrame {
     private String[] shapes = {"사각형", "삼각형", "원"};
     private double answer;
     private String solutionProcess;
-    private int questionCount = 0;
+    private List<String> availableShapes;
+    private PageLoadingManager pageLoadingManager;
 
     public normalDifficultyPage(PageLoadingManager pageLoadingManager) {
+        this.pageLoadingManager = pageLoadingManager;
         setTitle("도형 넓이 구하는 게임!");
         setSize(1980, 1080);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,6 +47,7 @@ public class normalDifficultyPage extends JFrame {
         sizeLabel.setBounds(150, 260, 350, 25);
         add(sizeLabel);
 
+        availableShapes = new ArrayList<>(List.of(shapes));
         displayRandomShape(shapeLabel, sizeLabel);
 
         JLabel answerLabel = new JLabel("정답: ");
@@ -60,32 +65,9 @@ public class normalDifficultyPage extends JFrame {
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    double userAnswer = Double.parseDouble(jTextField.getText());
-                    if (Math.abs(userAnswer - answer) < 0.01) {
-                        JOptionPane.showMessageDialog(null, "정답입니다!");
-                        JOptionPane.showMessageDialog(null, solutionProcess);
-                        scoreManager.addScore(20);
-                        scoreLabel.setText("점수 : " + scoreManager.getScore());
-                        questionCount++;
-
-                        if (questionCount < 6) {
-                            displayRandomShape(shapeLabel, sizeLabel);
-                            jTextField.setText("");
-
-                        } else {
-                            dispose();
-                            new EndPage();
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(null, "틀렸습니다. 다시 시도하세요.");
-                    }
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "유효한 숫자를 입력하세요.");
-                }
+                checkAnswer(Double.parseDouble(jTextField.getText()));
             }
         });
-
         setLocationRelativeTo(null);
         setVisible(true);
     }
@@ -94,7 +76,9 @@ public class normalDifficultyPage extends JFrame {
         Random random = new Random();
         String imagePath = "";
         String sizeText = "";
-        String selectedShape = shapes[random.nextInt(shapes.length)];
+        int randomIndex = random.nextInt(availableShapes.size());
+        String selectedShape = availableShapes.get(randomIndex);
+        availableShapes.remove(randomIndex);
 
         switch (selectedShape) {
             case "삼각형":
@@ -122,11 +106,23 @@ public class normalDifficultyPage extends JFrame {
                 answer = Math.round((r * r * 3.14) * 100.0) / 100.0;
                 solutionProcess = "원 넓이 = (π * r ^ 2)";
                 break;
-
         }
         ImageIcon originalIcon = new ImageIcon(imagePath);
         Image scaledImage = originalIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
         shapeLabel.setIcon(new ImageIcon(scaledImage));
         sizeLabel.setText(sizeText);
+    }
+    public int getLength() {
+        return shapes.length;
+    }
+
+    public void checkAnswer(double userAnswer) {
+        if (Math.abs(userAnswer - answer) < 0.01) {
+            scoreManager.addScore(20);
+            new normalAnswerPage(this, pageLoadingManager);
+        }
+        else {
+            new normalIncorrectAnswerPage(solutionProcess, answer, this, pageLoadingManager);
+        }
     }
 }
