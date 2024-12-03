@@ -74,3 +74,20 @@ public class ShapeSelectionPage {
             new squareInfo();
         });
 
+        // 원 버튼 클릭 이벤트
+        circleButton.addActionListener(e -> {
+            frame.dispose();
+            new circleInfo();
+        });
+
+        // "다음으로" 버튼 클릭 이벤트
+        nextButton.addActionListener(e -> {
+            frame.dispose();
+            new difficultyPage();
+        });
+
+        // 창을 화면 중앙에 위치
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
+}
