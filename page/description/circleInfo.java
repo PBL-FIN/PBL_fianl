@@ -29,7 +29,7 @@ public class circleInfo {
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         panel.add(titleLabel);
 
-        // 캐릭터 이미지// 캐릭터 이미지 경로 설정 필요
+        // 캐릭터 이미지
         ImageIcon characterIcon = new ImageIcon("img/ping4.png"); // 캐릭터 이미지 경로 설정 필요
         Image characterImg = characterIcon.getImage().getScaledInstance(170, 300, Image.SCALE_SMOOTH);
         JLabel characterLabel = new JLabel(new ImageIcon(characterImg));
@@ -44,10 +44,6 @@ public class circleInfo {
         panel.add(circleLabel);
 
         // 설명 텍스트
-        JLabel descriptionLabel = new JLabel("<html>원이 무엇일까요?<br>한 점에서 같은 거리에 있는 점을 이은 도형<br><br>원의 넓이를 구하는 공식은 어떻게 구할까요?<br>반지름(r) × 반지름(r) × 3.14</html>");
-        descriptionLabel.setBounds(250, 150, 300, 150);
-        descriptionLabel.setFont(new Font("Serif", Font.PLAIN, 15));  // 글씨 크기 및 폰트 설정
-
         JLabel descriptionLabel = new JLabel("<html>원이 무엇일까요?<br>한 점에서 같은 거리에 있는 점을 이은 도형<br>" +
                 "<br>원의 넓이를 구하는 공식은 어떻게 구할까요?<br>반지름 × 반지름 × 3.14</html>");
         descriptionLabel.setBounds(250, 150, 300, 150);
@@ -71,4 +67,3 @@ public class circleInfo {
         frame.setVisible(true);
     }
 }
-
