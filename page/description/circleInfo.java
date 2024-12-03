@@ -25,7 +25,7 @@ public class circleInfo {
         // 제목 라벨
         JLabel titleLabel = new JLabel();
         titleLabel.setBounds(200, 10, 200, 30);
-        titleLabel.setFont(new Font("Serif", Font.BOLD, 16));  // 글씨 크기 및 폰트 설정
+        titleLabel.setFont(new Font(null, Font.BOLD, 16));  // 글씨 크기 및 폰트 설정
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         panel.add(titleLabel);
 
