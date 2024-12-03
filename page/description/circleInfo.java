@@ -30,14 +30,14 @@ public class circleInfo {
         panel.add(titleLabel);
 
         // 캐릭터 이미지
-        ImageIcon characterIcon = new ImageIcon("C:\\도형 이미지\\qq.png"); // 캐릭터 이미지 경로 설정 필요
+        ImageIcon characterIcon = new ImageIcon(""); // 캐릭터 이미지 경로 설정 필요
         Image characterImg = characterIcon.getImage().getScaledInstance(170, 300, Image.SCALE_SMOOTH);
         JLabel characterLabel = new JLabel(new ImageIcon(characterImg));
         characterLabel.setBounds(30, 30, 200, 300);
         panel.add(characterLabel);
 
         // 원 이미지
-        ImageIcon circleIcon = new ImageIcon("C:\\도형 이미지\\one 2.png"); // 이미지 경로 설정 필요
+        ImageIcon circleIcon = new ImageIcon(""); // 이미지 경로 설정 필요
         Image circleImg = circleIcon.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH);
         JLabel circleLabel = new JLabel(new ImageIcon(circleImg));
         circleLabel.setBounds(270, 0, 200, 200);
