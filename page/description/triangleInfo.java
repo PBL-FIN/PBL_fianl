@@ -43,7 +43,7 @@ public class triangleInfo {
         circleLabel.setBounds(270, 0, 200, 200);
         panel.add(circleLabel);
 
-         // 글씨 크기 및 폰트 설정
+        // 설명 텍스트
         JLabel descriptionLabel = new JLabel("<html>삼각형이 무엇일까요?<br>세 개의 변과 세 개의 각을 가지고 있는 도형<br><br>삼각형의 넓이를 구하는 공식은 어떻게 구할까요?<br>밑변 x 높이 x 1/2</html>");
         descriptionLabel.setBounds(250, 150, 330, 150);
         descriptionLabel.setFont(new Font(null, Font.PLAIN, 15));  // 글씨 크기 및 폰트 설정
