@@ -1,34 +1,44 @@
 package page.difficulty;
 
 import page.alert.EndPage;
+import page.alert.normalIncorrectAnswerPage;
+import page.alert.normalAnswerPage;
 import problem.PageLoadingManager;
 import problem.scoreManager;
+import sun.awt.AWTAccessor;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Random;
-import java.util.Set;
+import java.util.List;
 
 public class normalDifficultyPage extends JFrame {
+    private final normalDifficultyPage thisFrame;
+    public JLabel shapeLabel;
+    public JLabel sizeLabel;
     private scoreManager scoreManager;
     private JLabel scoreLabel;
-    private JLabel shapeLabel;
-    private JLabel sizeLabel;
-    private String[] shapes = {"사각형", "삼각형", "원"};
+    private JLabel h1;
+    private JLabel h2;
+    private JLabel h3;
+    private String[] shapes = {"사각형", "삼각형", "원","삼각형2","사각형2"};
     private double answer;
     private String solutionProcess;
-    private int questionCount = 0;
-    private Set<String> usedQuestions; // 사용된 문제를 저장하는 Set
+    private List<String> availableShapes;
+    private PageLoadingManager pageLoadingManager;
+    private int lifes;
 
     public normalDifficultyPage(PageLoadingManager pageLoadingManager) {
+        this.pageLoadingManager = pageLoadingManager;
+        this.lifes = 3;
         setTitle("도형 넓이 구하는 게임!");
         setSize(1980, 1080);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
-
+        getContentPane().setBackground(Color.WHITE);
         JLabel difficultyLabel = new JLabel("난이도 : 보통");
         difficultyLabel.setBounds(20, 10, 100, 25);
         add(difficultyLabel);
@@ -46,7 +56,23 @@ public class normalDifficultyPage extends JFrame {
         sizeLabel.setBounds(150, 260, 500, 25);
         add(sizeLabel);
 
-        usedQuestions = new HashSet<>(); // 사용된 문제 초기화
+        h1 = new JLabel();
+        h1.setBounds(230, 0, 60, 60);
+        h2 = new JLabel();
+        h2.setBounds(280, 0, 60, 60);
+        h3 = new JLabel();
+        h3.setBounds(330, 0, 60, 60);
+
+        ImageIcon heartIcon = new ImageIcon("img/heart.jpg");
+        h1.setIcon(heartIcon);
+        h2.setIcon(heartIcon);
+        h3.setIcon(heartIcon);
+
+        add(h1);
+        add(h2);
+        add(h3);
+
+        availableShapes = new ArrayList<>(List.of(shapes));
         displayRandomShape(shapeLabel, sizeLabel);
 
         JLabel answerLabel = new JLabel("정답: ");
@@ -64,89 +90,90 @@ public class normalDifficultyPage extends JFrame {
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    double userAnswer = Double.parseDouble(jTextField.getText());
-                    if (Math.abs(userAnswer - answer) < 0.01) {
-                        JOptionPane.showMessageDialog(null, "정답입니다!");
-                        scoreManager.addScore(20);
-                        scoreLabel.setText("점수 : " + scoreManager.getScore());
-                        questionCount++;
-
-                        if (questionCount < 6) {
-                            displayRandomShape(shapeLabel, sizeLabel);
-                            jTextField.setText("");
-                        } else {
-                            dispose();
-                            new EndPage();
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(null, "틀렸습니다.");
-                        JOptionPane.showMessageDialog(null, solutionProcess);
-                        questionCount++;
-                        if (questionCount < 6) {
-                            displayRandomShape(shapeLabel, sizeLabel);
-                            jTextField.setText("");
-                        } else {
-                            dispose();
-                            new EndPage();
-                        }
-                    }
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "유효한 숫자를 입력하세요.");
-                }
+                checkAnswer(Double.parseDouble(jTextField.getText()));
             }
         });
-
         setLocationRelativeTo(null);
         setVisible(true);
+        thisFrame = this;
     }
 
     public void displayRandomShape(JLabel shapeLabel, JLabel sizeLabel) {
         Random random = new Random();
         String imagePath = "";
         String sizeText = "";
-        String selectedShape;
-        int base = 0, height = 0, side1 = 0, side2 = 0, r = 0;
-
-        do {
-            selectedShape = shapes[random.nextInt(shapes.length)];
-            if (selectedShape.equals("삼각형")) {
-                base = (random.nextInt(5) + 1) * 2;
-                height = (random.nextInt(5) + 1) * 2;
-                sizeText = "삼각형의 넓이를 구하시오. a: " + base + ", h: " + height;
-                answer = (double) (base * height) / 2;
-                solutionProcess = "삼각형 넓이 = (a * h) / 2";
-            } else if (selectedShape.equals("사각형")) {
-                side1 = random.nextInt(4) + 1;
-                side2 = random.nextInt(4) + 1;
-                sizeText = "사각형의 넓이를 구하시오. a: " + side1 + ", b: " + side2;
-                answer = side1 * side2;
-                solutionProcess = "사각형 넓이 = (a * b)";
-            } else if (selectedShape.equals("원")) {
-                r = random.nextInt(3) + 1;
-                sizeText = "원의 넓이를 구하고 소수 둘째자리에서 반올림하시오. (π = 3.14) r: " + r;
-                answer = Math.round((r * r * Math.PI) * 100.0) / 100.0;
-                solutionProcess = "원 넓이 = (π * r ^ 2)";
-            }
-        } while (usedQuestions.contains(sizeText)); // 이미 출제된 문제인지 확인
-
-        usedQuestions.add(sizeText); // 새로운 문제 추가
+        int randomIndex = random.nextInt(availableShapes.size());
+        String selectedShape = availableShapes.get(randomIndex);
+        availableShapes.remove(randomIndex);
 
         switch (selectedShape) {
             case "삼각형":
-                imagePath = "PBL_fianl-main/img/triangle 2.png";
+                imagePath = "img/triangle 2.png";
+                int base = (random.nextInt(5) + 1) * 2;
+                int height = (random.nextInt(5) + 1) * 2;
+                sizeText = "삼각형의 넓이를 구하시오. 밑변 a: " + base + ", 높이 h: " + height;
+                answer = (double) (base * height) / 2;
+                solutionProcess = "삼각형 넓이 = (밑변 x 높이) ÷ 2";
                 break;
+
+            case "삼각형2":
+                imagePath = "img/triangle 3.png";
+                sizeText = "삼각형의 높이(h)를 구하시오. 넓이 :9";
+                answer = 6;
+                solutionProcess = "삼각형 넓이 = (밑변 x 높이) ÷ 2";
+                break;
+
             case "사각형":
-                imagePath = "PBL_fianl-main/img/rectangle 2.png";
+                imagePath = "img/rectangle 2.png";
+                int side1 = random.nextInt(4) + 1;
+                int side2 = random.nextInt(4) + 1;
+                sizeText = "사각형의 넓이를 구하시오. 가로 a: " + side1 + ", 세로 b: " + side2;
+                answer = side1 * side2;
+                solutionProcess = "사각형 넓이 = (가로 x 세로)";
                 break;
+
+            case "사각형2":
+                imagePath = "img/rectangle 3.png";
+                sizeText = "사각형의 세로(b)를 구하시오. 넓이 : 35";
+                answer = 7;
+                solutionProcess = "사각형 넓이 = (가로 x 세로)";
+                break;
+
             case "원":
-                imagePath = "PBL_fianl-main/img/one 2.png";
+                imagePath = "img/one 2.png";
+                int r = random.nextInt(10) + 1;
+                sizeText = "원의 넓이를 구하고 소수 둘째자리에서 반올림하시오. 반지름 r: " + r;
+                answer = Math.round((r * r * 3.14) * 100.0) / 100.0;
+                solutionProcess = "원 넓이 = (π * 반지름 x 반지름)";
                 break;
         }
-
         ImageIcon originalIcon = new ImageIcon(imagePath);
         Image scaledImage = originalIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
         shapeLabel.setIcon(new ImageIcon(scaledImage));
         sizeLabel.setText(sizeText);
+    }
+
+    public int getLength() {
+        return shapes.length;
+    }
+
+    public void checkAnswer(double userAnswer) {
+        if (Math.abs(userAnswer - answer) < 0.01) {
+            scoreManager.addScore(20);
+            new normalAnswerPage(this, pageLoadingManager);
+        } else {
+            lifes--;
+            if (lifes == 2) {
+                h3.setVisible(false);
+            } else if (lifes == 1) {
+                h2.setVisible(false);
+            } else if (lifes == 0) {
+                h1.setVisible(false);
+                thisFrame.dispose();
+                new EndPage();
+            }
+            new normalIncorrectAnswerPage(solutionProcess, answer, this, pageLoadingManager);
+
+        }
     }
 }

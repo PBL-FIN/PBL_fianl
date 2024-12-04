@@ -17,6 +17,13 @@ public class questionPage extends JFrame {
         setSize(1980, 1080);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null); // FlowLayout 사용
+        // 이미지 라벨 생성 (왼쪽)
+        ImageIcon icon = new ImageIcon("img/ping5.png");
+        Image img = icon.getImage().getScaledInstance(400, 400, Image.SCALE_SMOOTH);
+        ImageIcon scaledIcon = new ImageIcon(img);
+        JLabel imageLabel = new JLabel(scaledIcon);
+        imageLabel.setBounds(80, 500, 400, 400);
+        add(imageLabel);
 
         questionLabel = new JLabel("도형의 넓이 구하는 공식을 아시나요?");
         yesButton = new JButton("네");
@@ -40,10 +47,10 @@ public class questionPage extends JFrame {
                 new ShapeSelectionPage();
             }
         });
-        questionLabel.setFont(new Font(null, Font.PLAIN, 50));
-        questionLabel.setBounds(200, 400, 1000, 50);
-        yesButton.setBounds(500, 500, 100, 40);
-        noButton.setBounds(700, 500, 100, 40);
+        questionLabel.setFont(new Font(null, Font.PLAIN, 60));
+        questionLabel.setBounds(370, 300, 1000, 60);
+        yesButton.setBounds(550, 500, 200, 60);
+        noButton.setBounds(950, 500, 200, 60);
         // 컴포넌트 추가
         add(questionLabel);
         add(yesButton);
@@ -52,3 +59,5 @@ public class questionPage extends JFrame {
         setVisible(true);
     }
 }
+
+

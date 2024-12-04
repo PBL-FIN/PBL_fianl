@@ -1,3 +1,4 @@
+package problem;
 public class Problem {
     private String problem;
     private int answer;
@@ -15,3 +16,4 @@ public class Problem {
         return answer;
     }    
 }
+

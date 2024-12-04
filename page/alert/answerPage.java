@@ -30,7 +30,7 @@ public class answerPage extends JFrame {
                 easyPage.dispose();
 
                 pageLoadingManager.addCnt();
-                if (pageLoadingManager.getLoadingCnt() >= 2) {
+                if (pageLoadingManager.getLoadingCnt() >= easyPage.getProblemLength()) {
                     new EndPage();
                 } else {
                     new easyQuizPage(pageLoadingManager);
