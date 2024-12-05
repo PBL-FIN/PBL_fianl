@@ -19,7 +19,7 @@ public class hintPage extends JFrame {
 
         tip = new JLabel("<html>Tip) 캐릭터를 클릭하면 힌트가 나와요~<br>문제를 풀기 어렵다면 클릭하세요!</html>");
         tip.setFont(new Font(null, Font.PLAIN, 50));
-        tip.setBounds(200, 400, 1500, 200); // 높이를 늘려 텍스트가 잘리지 않도록 조정
+        tip.setBounds(500, 300, 1500, 200); // 높이를 늘려 텍스트가 잘리지 않도록 조정
 
 
         start = new JButton("게임시작");
@@ -31,7 +31,7 @@ public class hintPage extends JFrame {
                 new easyQuizPage(pageLoadingManager);
             }
         });
-        start.setBounds(500, 800, 100, 100);
+        start.setBounds(850, 500, 100, 50);
 
         add(tip);
         add(start);
