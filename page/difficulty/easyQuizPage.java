@@ -6,8 +6,7 @@ import problem.PageLoadingManager;
 import problem.scoreManager;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.util.Random;
 
 public class easyQuizPage extends JFrame {
@@ -17,7 +16,7 @@ public class easyQuizPage extends JFrame {
     private String solutionProcess;
     private Random random;
     private String[] options;
-    private String[] shapes = {"사각형", "삼각형"};
+    private String[] shapes = {"사각형", "사각형_2", "삼각형", "삼각형_2", "원"};
     private JLabel shapeLabel;
     private JLabel sizeLabel;
     private PageLoadingManager pageLoadingManager;
@@ -46,7 +45,7 @@ public class easyQuizPage extends JFrame {
         add(shapeLabel);
 
         sizeLabel = new JLabel();
-        sizeLabel.setBounds(150, 260, 200, 25);
+        sizeLabel.setBounds(150, 260, 500, 25);
         add(sizeLabel);
         displayRandomShape(shapeLabel, sizeLabel);
 
@@ -58,25 +57,10 @@ public class easyQuizPage extends JFrame {
         JButton option2 = new JButton(options[1]);
         JButton option3 = new JButton(options[2]);
 
-        option1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                checkAnswer(Double.parseDouble(options[0]));
-            }
-        });
-        option2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                checkAnswer(Double.parseDouble(options[1]));
-            }
-        });
-        option3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                checkAnswer(Double.parseDouble(options[2]));
-            }
-        });
-       
+        option1.addActionListener(e -> checkAnswer(Double.parseDouble(options[0])));
+        option2.addActionListener(e -> checkAnswer(Double.parseDouble(options[1])));
+        option3.addActionListener(e -> checkAnswer(Double.parseDouble(options[2])));
+
         option1.setBounds(300, 150, 80, 40);
         option2.setBounds(400, 150, 80, 40);
         option3.setBounds(500, 150, 80, 40);
@@ -84,16 +68,19 @@ public class easyQuizPage extends JFrame {
         add(option1);
         add(option2);
         add(option3);
-        
+
         hint = new JButton(new ImageIcon("img/ping.png"));
         hint.setBounds(1000, 150, 300, 300);
         hint.setBorderPainted(false);
-        hint.addActionListener(e -> showHint());
+
+        // 어댑터 클래스를 사용하여 힌트 버튼의 동작 정의
+        hint.addMouseListener(new HintButtonAdapter());
         add(hint);
 
         setLocationRelativeTo(null);
         setVisible(true);
     }
+
     public int getProblemLength() {
         return shapes.length;
     }
@@ -114,7 +101,15 @@ public class easyQuizPage extends JFrame {
                 solutionProcess = "넓이 = (밑변 " + base + " * 높이 " + height + ") / 2";
                 hintMessage = "삼각형 넓이는 ( □ x □ ) / 2 야~ ";
                 break;
-           
+            case "삼각형_2":
+                imagePath = "";
+                int base_2 = (random.nextInt(4) + 1) * 2;
+                int height_2 = (random.nextInt(4) + 1) * 2;
+                sizeText = "밑변: " + base_2 + ", 높이: " + height_2;
+                answer = (double) (base_2 * height_2) / 2;
+                solutionProcess = "넓이 = (밑변 " + base_2 + " * 높이 " + height_2 + ") / 2";
+                hintMessage = "삼각형 넓이는 ( 밑변 x 높이 ) / 2 야~ ";
+                break;
             case "사각형":
                 imagePath = "img//rectangle.png";
                 int side1 = random.nextInt(4) + 1;
@@ -122,7 +117,24 @@ public class easyQuizPage extends JFrame {
                 sizeText = "한변: " + side1 + ", 한변: " + side2;
                 answer = side1 * side2;
                 solutionProcess = "넓이 = (한변 " + side1 + " * 한변 " + side2 + ")";
-                hintMessage = "사각형의 넓이는 ( □ x □ ) 야~ ";
+                hintMessage = "사각형의 넓이는 ( 밑변 x 높이 ) 야~ ";
+                break;
+            case "사각형_2":
+                imagePath = "img//rectangle 3.png";
+                int side3 = random.nextInt(4) + 1;
+                int side4 = random.nextInt(4) + 1;
+                sizeText = "한변: " + side3 + ", 한변: " + side4;
+                answer = side3 * side4;
+                solutionProcess = "넓이 = (한변 " + side3 + " * 한변 " + side4 + ")";
+                hintMessage = "사각형의 넓이는 ( 밑변 x 높이 ) 야~ ";
+                break;
+            case "원":
+                imagePath = "";
+                int r = random.nextInt(3) + 1;
+                sizeText = "원의 넓이를 구하고 소수 둘째자리에서 반올림하세요. 반지름: " + r;
+                answer = Math.round((r * r * 3.14) * 100.0) / 100.0;
+                solutionProcess = "원 넓이 = (3.14 * 반지름 x 반지름)";
+                hintMessage = "원의 넓이는 (반지름 x 반지름 x 3.14) 야~ ";
                 break;
         }
 
@@ -144,13 +156,21 @@ public class easyQuizPage extends JFrame {
             }
         }
     }
-    
+
     public void checkAnswer(double answerValue) {
         if (answer == answerValue) {
-            scoreManager.addScore(10);
+            scoreManager.addScore(20);
             new answerPage(this, pageLoadingManager);
         } else {
             new inCorrectAnswerPage(solutionProcess, answer, this, pageLoadingManager);
+        }
+    }
+
+    // AdapterClass 사용
+    public class HintButtonAdapter extends MouseAdapter {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            showHint();
         }
     }
 
@@ -158,7 +178,6 @@ public class easyQuizPage extends JFrame {
         JOptionPane.showMessageDialog(this, hintMessage, "힌트핑", JOptionPane.INFORMATION_MESSAGE);
     }
 }
-
 
 
 
