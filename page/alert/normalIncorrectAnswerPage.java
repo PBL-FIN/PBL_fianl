@@ -7,38 +7,41 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-public class normalIncorrectAnswerPage extends JFrame {
+import problem.lifeManager;
+public class normalAnswerPage extends JFrame {
     private PageLoadingManager pageLoadingManager;
-    public normalIncorrectAnswerPage(String solutionProcess, double correctAnswer, normalDifficultyPage normalDifficultyPage, PageLoadingManager pageLoadingManager) {
-        setTitle("오답 화면");
-        setSize(800, 400);
-        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        JLabel label = new JLabel("틀렸습니다. 정답은: " + correctAnswer + "풀이 과정: " + solutionProcess);
-        label.setHorizontalAlignment(SwingConstants.CENTER);
+    private lifeManager lifeManager;
+    public normalAnswerPage(normalDifficultyPage normalDifficultyPage, PageLoadingManager pageLoadingManager,
+                            lifeManager lifeManager) {
+        this.pageLoadingManager = pageLoadingManager;
 
-        JPanel panel = new JPanel();
-        panel.add(label);
+        JFrame frame = new JFrame("정답 화면");
+        frame.setSize(300, 150);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JLabel label = new JLabel("정답!!", SwingConstants.CENTER);
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.add(label, BorderLayout.CENTER);
 
         JButton confirmButton = new JButton("확인");
         confirmButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
+                frame.dispose();
                 normalDifficultyPage.dispose();
 
                 pageLoadingManager.addCnt();
-                if (pageLoadingManager.getLoadingCnt() > normalDifficultyPage.getLength()) {
+                if (pageLoadingManager.getLoadingCnt() >= normalDifficultyPage.getLength() || lifeManager.getLifeCnt() == 0) {
                     new EndPage();
                 } else {
-                    new normalDifficultyPage(pageLoadingManager);
+                    new normalDifficultyPage(pageLoadingManager, lifeManager);
                 }
             }
         });
 
         panel.add(confirmButton, BorderLayout.SOUTH);
-        add(panel);
-        setLocationRelativeTo(null);
-        setVisible(true);
+        frame.add(panel);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
 }
