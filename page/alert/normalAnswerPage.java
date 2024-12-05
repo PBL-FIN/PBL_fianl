@@ -7,11 +7,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import problem.lifeManager;
 public class normalAnswerPage extends JFrame {
     private PageLoadingManager pageLoadingManager;
-
-    public normalAnswerPage(normalDifficultyPage normalDifficultyPage, PageLoadingManager pageLoadingManager) {
+    private lifeManager lifeManager;
+    public normalAnswerPage(normalDifficultyPage normalDifficultyPage, PageLoadingManager pageLoadingManager,
+                            lifeManager lifeManager) {
         this.pageLoadingManager = pageLoadingManager;
 
         JFrame frame = new JFrame("정답 화면");
@@ -30,10 +31,10 @@ public class normalAnswerPage extends JFrame {
                 normalDifficultyPage.dispose();
 
                 pageLoadingManager.addCnt();
-                if (pageLoadingManager.getLoadingCnt() >= normalDifficultyPage.getLength()) {
+                if (pageLoadingManager.getLoadingCnt() >= normalDifficultyPage.getLength() || lifeManager.getLifeCnt() == 0) {
                     new EndPage();
                 } else {
-                    new normalDifficultyPage(pageLoadingManager);
+                    new normalDifficultyPage(pageLoadingManager, lifeManager);
                 }
             }
         });
