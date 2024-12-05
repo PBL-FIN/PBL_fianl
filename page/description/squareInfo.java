@@ -42,7 +42,7 @@ public class squareInfo {
         circleLabel.setBounds(270, 0, 200, 200);
         panel.add(circleLabel);
   // 글씨 크기 및 폰트 설정
-        JLabel descriptionLabel = new JLabel("<html>사각형이 무엇일까요?<br>네 게의 꼭짓점이 있고 선분으로 둘러쌓인 도형<br><br>사각형의 넓이를 구하는 공식은 어떻게 구할까요?<br>밑변 x 높이</html>");
+        JLabel descriptionLabel = new JLabel("<html>사각형이 무엇일까요?<br>네 개의 꼭짓점이 있고 선분으로 둘러쌓인 도형<br><br>사각형의 넓이를 구하는 공식은 어떻게 구할까요?<br>밑변 x 높이</html>");
         descriptionLabel.setBounds(250, 150, 330, 150);
         descriptionLabel.setFont(new Font(null, Font.PLAIN, 15));  // 글씨 크기 및 폰트 설정
         descriptionLabel.setHorizontalAlignment(SwingConstants.LEFT);
