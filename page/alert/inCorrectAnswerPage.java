@@ -15,7 +15,6 @@ public class inCorrectAnswerPage extends JFrame {
         setSize(800, 400);
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
-    
         JLabel label = new JLabel("틀렸습니다. 정답은: " + correctAnswer + "풀이 과정: " + solutionProcess);
         label.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -30,7 +29,7 @@ public class inCorrectAnswerPage extends JFrame {
                 easyPage.dispose();
 
                 pageLoadingManager.addCnt();
-                if (pageLoadingManager.getLoadingCnt() >= 2) {
+                if (pageLoadingManager.getLoadingCnt() >= easyPage.getProblemLength()) {
                     new EndPage();
                 } else {
                     new easyQuizPage(pageLoadingManager);
