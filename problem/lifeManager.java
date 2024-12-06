@@ -9,4 +9,8 @@ public class lifeManager {
     public int getLifeCnt() {
         return lifeCnt;
     }
+
+    public void resetLife() {
+        lifeCnt = 3;
+    }
 }
