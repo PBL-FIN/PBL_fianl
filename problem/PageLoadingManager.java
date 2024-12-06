@@ -10,4 +10,8 @@ public class PageLoadingManager {
     public int getLoadingCnt() {
         return LoadingCnt;
     }
+
+    public void resetLoadingCnt() {
+        LoadingCnt = 0;
+    }
 }
