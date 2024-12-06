@@ -8,28 +8,38 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import problem.lifeManager;
-public class normalAnswerPage extends JFrame {
+public class normalIncorrectAnswerPage extends JDialog {
+
     private PageLoadingManager pageLoadingManager;
     private lifeManager lifeManager;
-    public normalAnswerPage(normalDifficultyPage normalDifficultyPage, PageLoadingManager pageLoadingManager,
-                            lifeManager lifeManager) {
+
+    public normalIncorrectAnswerPage(String solutionProcess, double correctAnswer, normalDifficultyPage normalDifficultyPage,
+                                     PageLoadingManager pageLoadingManager, lifeManager lifeManager) {
+
         this.pageLoadingManager = pageLoadingManager;
+        this.lifeManager = lifeManager;
 
-        JFrame frame = new JFrame("정답 화면");
-        frame.setSize(300, 150);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setTitle("오답 화면");
+        setSize(800, 400);
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
-        JLabel label = new JLabel("정답!!", SwingConstants.CENTER);
-        JPanel panel = new JPanel(new BorderLayout());
+        JLabel label = new JLabel("틀렸습니다. 정답은: " + correctAnswer + " 풀이 과정: " + solutionProcess);
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new BorderLayout());
         panel.add(label, BorderLayout.CENTER);
 
         JButton confirmButton = new JButton("확인");
         confirmButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.dispose();
+                dispose();
+                normalDifficultyPage.displayRandomShape(normalDifficultyPage.shapeLabel, normalDifficultyPage.sizeLabel);
                 normalDifficultyPage.dispose();
+                lifeManager.discount();
 
+                System.out.println(lifeManager.getLifeCnt());
                 pageLoadingManager.addCnt();
                 if (pageLoadingManager.getLoadingCnt() >= normalDifficultyPage.getLength() || lifeManager.getLifeCnt() == 0) {
                     new EndPage();
@@ -40,8 +50,8 @@ public class normalAnswerPage extends JFrame {
         });
 
         panel.add(confirmButton, BorderLayout.SOUTH);
-        frame.add(panel);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
+        add(panel);
+        setLocationRelativeTo(normalDifficultyPage);
+        setVisible(true);
     }
 }
