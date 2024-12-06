@@ -129,7 +129,7 @@ public class easyQuizPage extends JFrame {
                 hintMessage = "사각형의 넓이는 ( 밑변 x 높이 ) 야~ ";
                 break;
             case "원":
-                imagePath = "";
+                imagePath = "img/one 2.png";
                 int r = random.nextInt(3) + 1;
                 sizeText = "원의 넓이를 구하고 소수 둘째자리에서 반올림하세요. 반지름: " + r;
                 answer = Math.round((r * r * 3.14) * 100.0) / 100.0;
