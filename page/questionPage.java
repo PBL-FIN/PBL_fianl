@@ -48,9 +48,9 @@ public class questionPage extends JFrame {
             }
         });
         questionLabel.setFont(new Font(null, Font.PLAIN, 60));
-        questionLabel.setBounds(600, 400, 1000, 60);
-        yesButton.setBounds(800, 500, 200, 60);
-        noButton.setBounds(1200, 500, 200, 60);
+        questionLabel.setBounds(370, 300, 1000, 60);
+        yesButton.setBounds(550, 500, 200, 60);
+        noButton.setBounds(950, 500, 200, 60);
         // 컴포넌트 추가
         add(questionLabel);
         add(yesButton);
