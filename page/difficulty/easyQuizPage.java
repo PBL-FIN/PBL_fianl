@@ -102,7 +102,7 @@ public class easyQuizPage extends JFrame {
                 hintMessage = "삼각형 넓이는 ( □ x □ ) / 2 야~ ";
                 break;
             case "삼각형_2":
-                imagePath = "";
+                imagePath = "img//triangle 2.png";
                 int base_2 = (random.nextInt(4) + 1) * 2;
                 int height_2 = (random.nextInt(4) + 1) * 2;
                 sizeText = "밑변: " + base_2 + ", 높이: " + height_2;
@@ -178,6 +178,5 @@ public class easyQuizPage extends JFrame {
         JOptionPane.showMessageDialog(this, hintMessage, "힌트핑", JOptionPane.INFORMATION_MESSAGE);
     }
 }
-
 
 
