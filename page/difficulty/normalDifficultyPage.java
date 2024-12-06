@@ -28,6 +28,7 @@ public class normalDifficultyPage extends JFrame {
     public normalDifficultyPage(PageLoadingManager pageLoadingManager, lifeManager lifeManager) {
         this.pageLoadingManager = pageLoadingManager;
         this.lifeManager = lifeManager;
+
         setTitle("도형 넓이 구하는 게임!");
         setSize(1980, 1080);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
