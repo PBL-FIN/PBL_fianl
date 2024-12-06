@@ -3,7 +3,7 @@ package page.alert;
 import javax.swing.*;
 
 import page.startPage;
-import problem.scoreManager;
+import problem.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +13,8 @@ public class EndPage extends JFrame{
     private JLabel score;
     private JButton goToMenu;
     private scoreManager scoreManager;
+    private lifeManager lifeManager;
+    private PageLoadingManager pageLoadingManager;
     public EndPage() {
         setTitle("도형 넓이 구하는 게임!");
         setSize(1980, 1080);
@@ -20,6 +22,8 @@ public class EndPage extends JFrame{
         setLayout(null);
 
         scoreManager = new scoreManager();
+        lifeManager = new lifeManager();
+        pageLoadingManager = new PageLoadingManager();
         result = new JLabel("고생했어요");
         result.setBounds(100,100,100,100);
         add(result);
@@ -34,6 +38,8 @@ public class EndPage extends JFrame{
                 dispose();
                 new startPage();
                 scoreManager.resetScore();
+                lifeManager.resetLife();
+                pageLoadingManager.resetLoadingCnt();
             }
         });
         add(goToMenu);
