@@ -7,7 +7,7 @@ import problem.scoreManager;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Random;
+import java.util.*;
 
 public class easyQuizPage extends JFrame {
     private JLabel scoreLabel;
@@ -44,17 +44,17 @@ public class easyQuizPage extends JFrame {
         backgroundPanel.setLayout(null);
         setContentPane(backgroundPanel); // JFrame의 콘텐츠 팬을 배경 패널로 설정
 
-        circleLabel = new JLabel("원의 넓이를 구하고 소수 둘째 자리에서 반올림해봐!~");
-        circleLabel.setBounds(600,475, 1000, 100);
-        circleLabel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+        circleLabel = new JLabel("원의 넓이를 구하고 소수 둘째자리에서 반올림해봐.");
+        circleLabel.setBounds(300,300, 1000, 100);
+        circleLabel.setFont(new Font("맑은 고딕", Font.PLAIN, 30));
 
-        hintClick = new JLabel("힌트가 필요하면 날 클릭해봐!");
-        hintClick.setBounds(1100, 550, 500, 50);
+        hintClick = new JLabel("힌트가 필요하면 날 클릭해");
+        hintClick.setBounds(1200, 600, 500, 50);
         add(hintClick);
 
         scoreManager = new scoreManager();
         scoreLabel = new JLabel("점수 : " + scoreManager.getScore());
-        scoreLabel.setFont(new Font("맑은 고딕", Font.BOLD, 30)); // 폰트 크기 설정
+        scoreLabel.setFont(new Font("맑은 고딕", Font.PLAIN, 30)); // 폰트 크기 설정
         scoreLabel.setBounds(20, 10, 200, 40);
         add(scoreLabel);
 
@@ -63,12 +63,12 @@ public class easyQuizPage extends JFrame {
         add(shapeLabel);
 
         sizeLabel = new JLabel();
-        sizeLabel.setFont(new Font("맑은 고딕", Font.BOLD, 30)); // 폰트 크기 설정
-        sizeLabel.setBounds(750, 535, 1000, 80);
+        sizeLabel.setFont(new Font("맑은 고딕", Font.PLAIN, 30)); // 폰트 크기 설정
+        sizeLabel.setBounds(750, 550, 1000, 80);
         add(sizeLabel);
         displayRandomShape(shapeLabel, sizeLabel);
 
-        JLabel questionLabel = new JLabel("이 도형의 넓이는 얼마일까~?");
+        JLabel questionLabel = new JLabel("이 도형의 넓이는 얼마일까?");
         questionLabel.setFont(new Font("맑은 고딕", Font.BOLD, 50)); // 폰트 크기 설정
         questionLabel.setBounds(560, 120, 700, 100);
         add(questionLabel);
@@ -119,7 +119,7 @@ public class easyQuizPage extends JFrame {
                 imagePath = "img/triangle 2.png";
                 int base = (random.nextInt(4) + 1);
                 int height = (random.nextInt(4) + 1);
-                sizeText = "밑변 : " + base + ", 높이 : " + height;
+                sizeText = "밑변: " + base + ", 높이: " + height;
                 answer = (double) (base * height) / 2;
                 solutionProcess = "넓이 = (밑변 " + base + " * 높이 " + height + ") / 2";
                 hintMessage = "삼각형 넓이는 ( □ x □ ) / 2 야~ ";
@@ -128,7 +128,7 @@ public class easyQuizPage extends JFrame {
                 imagePath = "img/triangle 2.png";
                 int base_2 = (random.nextInt(4) + 1);
                 int height_2 = (random.nextInt(4) + 1);
-                sizeText = "밑변 : " + base_2 + ", 높이 : " + height_2;
+                sizeText = "밑변: " + base_2 + ", 높이: " + height_2;
                 answer = (double) (base_2 * height_2) / 2;
                 solutionProcess = "넓이 = (밑변 " + base_2 + " * 높이 " + height_2 + ") / 2";
                 hintMessage = "삼각형 넓이는 ( 밑변 x 높이 ) / 2 야~ ";
@@ -137,7 +137,7 @@ public class easyQuizPage extends JFrame {
                 imagePath = "img/rectangle.png";
                 int side1 = random.nextInt(4) + 1;
                 int side2 = random.nextInt(4) + 1;
-                sizeText = "한변 : " + side1 + ", 한변 : " + side2;
+                sizeText = "한변: " + side1 + ", 한변: " + side2;
                 answer = side1 * side2;
                 solutionProcess = "넓이 = (한변 " + side1 + " * 한변 " + side2 + ")";
                 hintMessage = "사각형의 넓이는 ( 밑변 x 높이 ) 야~ ";
@@ -146,7 +146,7 @@ public class easyQuizPage extends JFrame {
                 imagePath = "img/rectangle.png";
                 int side3 = random.nextInt(4) + 1;
                 int side4 = random.nextInt(4) + 1;
-                sizeText = "한변 : " + side3 + ", 한변 : " + side4;
+                sizeText = "한변: " + side3 + ", 한변: " + side4;
                 answer = side3 * side4;
                 solutionProcess = "넓이 = (한변 " + side3 + " * 한변 " + side4 + ")";
                 hintMessage = "사각형의 넓이는 ( 밑변 x 높이 ) 야~ ";
@@ -154,7 +154,7 @@ public class easyQuizPage extends JFrame {
             case "원":
                 imagePath = "img/one 2.png";
                 int r = random.nextInt(3) + 1;
-                sizeText = "반지름 : " + r;
+                sizeText = "반지름: " + r;
                 answer = Math.round((r * r * 3.14) * 100.0) / 100.0;
                 solutionProcess = "원 넓이 = (3.14 * 반지름 x 반지름)";
                 hintMessage = "원의 넓이는 (반지름 x 반지름 x 3.14) 야~ ";
@@ -171,34 +171,38 @@ public class easyQuizPage extends JFrame {
     }
 
     public void generateOptions(String selectedShape) {
-        options = new String[3];
-        int correctIndex = random.nextInt(3);
+        options = new String[3]; //String type 을 저장하는 길이 3인 리스트 생성
+        int correctIndex = random.nextInt(3); // 정답이 위치할 인덱스를 무작위로 선택
+        options[correctIndex] = String.valueOf(answer); // 정답 값을 해당 인덱스에 설정
 
-        if ("원".equals(selectedShape)) {
-            // 정답을 소수점 둘째 자리까지 포맷팅
-            options[correctIndex] = String.valueOf(answer);
-
-            for (int i = 0; i < options.length; i++) {
-                if (i != correctIndex) {
-                    // 랜덤 값 생성 후 소수점 둘째 자리까지 포맷팅
-                    double randomValue = Math.abs(answer + random.nextInt(5) + 2);
-                    options[i] = String.format("%.2f", randomValue);
+        // 중복 방지를 위해 HashSet 사용
+        HashSet<String> usedOptions = new HashSet<>();
+        usedOptions.add(options[correctIndex]); // 정답 추가
+        // 3개의 옵션 중 정답을 제외한 나머지 2개의 옵션 생성하는 로직
+        for (int i = 0; i < options.length; i++) {
+            if (i != correctIndex) { // 정답 인덱스가 아닐경우
+                String generatedOption = ""; // 새로 생성할 옵션 값 초기화
+                // 새로운 값이 중복되지 않을 때까지 반복
+                while (generatedOption.isEmpty() || usedOptions.contains(generatedOption)) {
+                    // 원의 경우
+                    if ("원".equals(selectedShape)) {
+                        double randomValue = (answer + (random.nextInt(5) + 1) + random.nextInt(5) + 2);
+                        generatedOption = String.format("%.2f", randomValue);
+                        // 삼각형/사각형의 경우
+                    } else {
+                        double randomValue = ((answer + random.nextInt(5) + 1));
+                        generatedOption = String.valueOf(randomValue);
+                    }
                 }
-            }
-        } else {
-            // 원이 아닌 경우 기존 방식으로 처리
-            options[correctIndex] = String.valueOf(answer);
-
-            for (int i = 0; i < options.length; i++) {
-                if (i != correctIndex) {
-                    options[i] = String.valueOf(Math.abs(answer + random.nextInt(5) + 2));
-                }
+                // 중복되지 않은 값을 옵션에 추가하고 HashSet에도 추가
+                options[i] = generatedOption;
+                usedOptions.add(generatedOption); // 추가된 값 기록
             }
         }
     }
 
     public void checkAnswer(double answerValue) {
-        if (Math.abs(answerValue - answer) < 0.01) {
+        if ((answerValue - answer) < 0.01) {
             scoreManager.addScore(20);
             new answerPage(this, pageLoadingManager);
         } else {
