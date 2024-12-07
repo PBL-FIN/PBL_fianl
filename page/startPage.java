@@ -13,7 +13,7 @@ public class startPage extends JFrame {
 
     public startPage() {
         setTitle("도형 넓이 구하는 게임!");
-        setSize(1980, 1080);
+        setSize(1920, 1080);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
 

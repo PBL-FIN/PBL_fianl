@@ -18,7 +18,6 @@ public class normalDifficultyPage extends JFrame {
     public JLabel sizeLabel;
     private scoreManager scoreManager;
     private JLabel scoreLabel;
-    private JLabel info;
     private JLabel h1;
     private JLabel h2;
     private JLabel h3;
@@ -132,10 +131,7 @@ public class normalDifficultyPage extends JFrame {
                 imagePath = "img/triangle 2.png";
                 int base = (random.nextInt(5) + 1) * 2;
                 int height = (random.nextInt(5) + 1) * 2;
-                sizeText = "삼각형의 넓이를 구하시오.";
-                info = new JLabel("밑변 a: " + base + ", 높이 h: " + height);
-                info.setBounds(500,500,1000,50);
-                add(info);
+                sizeText = "삼각형의 넓이를 구하시오. 밑변 a: " + base + ", 높이 h: " + height;
                 answer = (double) (base * height) / 2;
                 solutionProcess = "삼각형 넓이 = (밑변 x 높이) ÷ 2";
                 break;
@@ -151,10 +147,7 @@ public class normalDifficultyPage extends JFrame {
                 imagePath = "img/rectangle 2.png";
                 int side1 = random.nextInt(4) + 1;
                 int side2 = random.nextInt(4) + 1;
-                sizeText = "사각형의 넓이를 구하시오.";
-                info = new JLabel("가로 a: " + side1 + ", 세로 b: " + side2);
-                info.setBounds(500,500,1000,50);
-                add(info);
+                sizeText = "사각형의 넓이를 구하시오. 가로 a: " + side1 + ", 세로 b: " + side2;
                 answer = side1 * side2;
                 solutionProcess = "사각형 넓이 = (가로 x 세로)";
                 break;
@@ -169,15 +162,11 @@ public class normalDifficultyPage extends JFrame {
             case "원":
                 imagePath = "img/one 2.png";
                 int r = random.nextInt(10) + 1;
-                sizeText = "원의 넓이를 구하고 소수 둘째자리에서 반올림하시오.";
-                info = new JLabel("반지름 r: " + r);
-                info.setBounds(500,500,1000,50);
-                add(info);
+                sizeText = "원의 넓이를 구하고 소수 둘째자리에서 반올림하시오. 반지름 r: " + r;
                 answer = Math.round((r * r * 3.14) * 100.0) / 100.0;
                 solutionProcess = "원 넓이 = (3.14 * 반지름 x 반지름)";
                 break;
         }
-
         ImageIcon originalIcon = new ImageIcon(imagePath);
         Image scaledImage = originalIcon.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
         shapeLabel.setIcon(new ImageIcon(scaledImage));
