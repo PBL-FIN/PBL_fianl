@@ -82,38 +82,7 @@ public class easyQuizPage extends JFrame {
         option3.addActionListener(e -> checkAnswer(Double.parseDouble(options[2])));
 
         option1.setBounds(600, 650, 130, 60);
-        option1.setFont(new Font("맑은 고딕", Font.BOLD, 30));
-        option2.setBounds(800, 650, 130, 60);
-        option2.setFont(new Font("맑은 고딕", Font.BOLD, 30));
-        option3.setBounds(1000, 650, 130, 60);
-        option3.setFont(new Font("맑은 고딕", Font.BOLD, 30));
-
-        add(option1);
-        add(option2);
-        add(option3);
-
-        hint = new JButton(new ImageIcon("img/ping5.png"));
-        hint.setBounds(1100, 280, 260, 260);
-        hint.setBorderPainted(false);
-
-        // 어댑터 클래스를 사용하여 힌트 버튼의 동작 정의
-        hint.addMouseListener(new HintButtonAdapter());
-        add(hint);
-
-        setLocationRelativeTo(null);
-        setVisible(true);
-    }
-
-    public int getProblemLength() {
-        return shapes.length;
-    }
-
-    public void displayRandomShape(JLabel shapeLabel, JLabel sizeLabel) {
-        random = new Random();
-        String imagePath = "";
-        String sizeText = "";
-        String selectedShape = shapes[random.nextInt(shapes.length)];
-
+        opt건
         switch (selectedShape) {
             case "삼각형":
                 imagePath = "img/triangle 2.png";
@@ -163,13 +132,15 @@ public class easyQuizPage extends JFrame {
         }
 
         ImageIcon originalIcon = new ImageIcon(imagePath);
+        // 이미지를 자연스럽게 늘려줌
         Image scaledImage = originalIcon.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
+        //늘려진 이미지를 추가
         shapeLabel.setIcon(new ImageIcon(scaledImage));
         sizeLabel.setText(sizeText);
 
         generateOptions(selectedShape);
     }
-
+    // 버튼을 생성하는 메소드
     public void generateOptions(String selectedShape) {
         options = new String[3]; //String type 을 저장하는 길이 3인 리스트 생성
         int correctIndex = random.nextInt(3); // 정답이 위치할 인덱스를 무작위로 선택
@@ -188,36 +159,41 @@ public class easyQuizPage extends JFrame {
                     if ("원".equals(selectedShape)) {
                         double randomValue = (answer + (random.nextInt(5) + 1) + random.nextInt(5) + 2);
                         generatedOption = String.format("%.2f", randomValue);
-                        // 삼각형/사각형의 경우
-                    } else {
+                    }
+                     // 삼각형/사각형의 경우
+                    else {    
                         double randomValue = ((answer + random.nextInt(5) + 1));
                         generatedOption = String.valueOf(randomValue);
                     }
                 }
                 // 중복되지 않은 값을 옵션에 추가하고 HashSet에도 추가
                 options[i] = generatedOption;
-                usedOptions.add(generatedOption); // 추가된 값 기록
+                usedOptions.add(generatedOption);
             }
         }
     }
 
     public void checkAnswer(double answerValue) {
+        // answerValue는 반올림 값이여서 기존 값과 차이가 있음 그 차이값을 최대 0.01로 잡음
         if ((answerValue - answer) < 0.01) {
+            // score에 20을 추가
             scoreManager.addScore(20);
             new answerPage(this, pageLoadingManager);
         } else {
+            //this란 현재 패이지를 말함함
             new inCorrectAnswerPage(solutionProcess, answer, this, pageLoadingManager);
         }
     }
 
     // AdapterClass 사용
+    // 마우스 클릭시 이벤트 발생
     public class HintButtonAdapter extends MouseAdapter {
         @Override
         public void mouseClicked(MouseEvent e) {
             showHint();
         }
     }
-
+    // 힌트 출력하는 메소드
     public void showHint() {
         JOptionPane.showMessageDialog(this, hintMessage, "힌트핑", JOptionPane.INFORMATION_MESSAGE);
     }
