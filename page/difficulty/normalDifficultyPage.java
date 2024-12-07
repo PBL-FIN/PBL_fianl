@@ -198,7 +198,7 @@ public class normalDifficultyPage extends JFrame {
     public int getLength() {
         return shapes.length;
     }
-
+    // easy난이도와 로직 같음음
     public void checkAnswer(double userAnswer) {
         if (Math.abs(userAnswer - answer) < 0.01) {
             scoreManager.addScore(20);
