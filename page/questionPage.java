@@ -44,7 +44,6 @@ public class questionPage extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null, "괜찮아~ 그럼 도형의 넓이에 대해 알아보러 가볼까?");
-
                 dispose();
                 new ShapeSelectionPage();
             }
@@ -68,7 +67,4 @@ public class questionPage extends JFrame {
         button.setFocusPainted(false); // 포커스 효과 제거
         button.setRolloverEnabled(false); // 롤오버 효과 제거
     }
-        public static void main(String[] args) {
-            new startPage();
-        }
-    }
+}
