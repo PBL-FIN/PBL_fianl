@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.util.Random;
 import problem.lifeManager;
 
+
 public class normalDifficultyPage extends JFrame {
     public JLabel shapeLabel;
     public JLabel sizeLabel;
@@ -29,34 +30,44 @@ public class normalDifficultyPage extends JFrame {
         this.pageLoadingManager = pageLoadingManager;
         this.lifeManager = lifeManager;
 
-        setTitle("도형 넓이 구하는 게임!");
+        setTitle("보통 난이도");
         setSize(1980, 1080);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
-        getContentPane().setBackground(Color.WHITE);
-        JLabel difficultyLabel = new JLabel("난이도 : 보통");
-        difficultyLabel.setBounds(20, 10, 100, 25);
-        add(difficultyLabel);
+
+        JPanel backgroundPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                ImageIcon background = new ImageIcon("img/bg 6-2.png"); // 배경 이미지 경로 설정
+                g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+        backgroundPanel.setLayout(null);
+        setContentPane(backgroundPanel); // JFrame의 콘텐츠 팬을 배경 패널로 설정
+
 
         scoreManager = new scoreManager();
         scoreLabel = new JLabel("점수 : " + scoreManager.getScore());
-        scoreLabel.setBounds(140, 10, 100, 25);
+        scoreLabel.setFont(new Font("맑은 고딕", Font.PLAIN, 30)); // 폰트 크기 설정
+        scoreLabel.setBounds(20, 10, 200, 40);
         add(scoreLabel);
 
         shapeLabel = new JLabel();
-        shapeLabel.setBounds(150, 50, 200, 200);
+        shapeLabel.setBounds(730, 220, 300, 300);
         add(shapeLabel);
 
         sizeLabel = new JLabel();
-        sizeLabel.setBounds(150, 260, 500, 25);
+        sizeLabel.setFont(new Font("맑은 고딕", Font.BOLD, 40)); // 폰트 크기 설정
+        sizeLabel.setBounds(500, 140, 1000, 70);
         add(sizeLabel);
 
         h1 = new JLabel();
-        h1.setBounds(230, 0, 60, 60);
+        h1.setBounds(260, 0, 60, 60);
         h2 = new JLabel();
-        h2.setBounds(280, 0, 60, 60);
+        h2.setBounds(310, 0, 60, 60);
         h3 = new JLabel();
-        h3.setBounds(330, 0, 60, 60);
+        h3.setBounds(360, 0, 60, 60);
 
         ImageIcon heartIcon = new ImageIcon("img/heart.jpg");
         h1.setIcon(heartIcon);
@@ -78,16 +89,24 @@ public class normalDifficultyPage extends JFrame {
 
         displayRandomShape(shapeLabel, sizeLabel);
 
-        JLabel answerLabel = new JLabel("정답: ");
-        answerLabel.setBounds(300, 300, 200, 25);
+        JLabel difficultyLabel = new JLabel("생명 : ");
+        difficultyLabel.setFont(new Font("맑은 고딕", Font.PLAIN, 30));
+        difficultyLabel.setBounds(170, 12, 100, 35);
+        add(difficultyLabel);
+
+        JLabel answerLabel = new JLabel("정답 :");
+        answerLabel.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+        answerLabel.setBounds(600, 575, 200, 35);
         add(answerLabel);
 
         JTextField jTextField = new JTextField(10);
-        jTextField.setBounds(400, 300, 100, 25);
+        jTextField.setFont(new Font("맑은 고딕", Font.BOLD, 25)); // 입력창 글씨 크기 설정
+        jTextField.setBounds(700, 580, 200, 35);
         add(jTextField);
 
         JButton submitButton = new JButton("제출");
-        submitButton.setBounds(520, 300, 80, 25);
+        submitButton.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
+        submitButton.setBounds(950, 580, 140, 35);
         add(submitButton);
 
         submitButton.addActionListener(new ActionListener() {
@@ -149,7 +168,7 @@ public class normalDifficultyPage extends JFrame {
                 break;
         }
         ImageIcon originalIcon = new ImageIcon(imagePath);
-        Image scaledImage = originalIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        Image scaledImage = originalIcon.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
         shapeLabel.setIcon(new ImageIcon(scaledImage));
         sizeLabel.setText(sizeText);
     }

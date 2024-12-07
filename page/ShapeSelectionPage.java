@@ -11,12 +11,13 @@ public class ShapeSelectionPage {
 
     public ShapeSelectionPage() {
         // 프레임 생성
-        frame = new JFrame("도형 선택 화면");
+        frame = new JFrame("도형");
         frame.setSize(800, 450);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // 패널 생성
         JPanel panel = new JPanel();
+        panel.setBackground(Color.WHITE);
         frame.setContentPane(panel);
         panel.setLayout(null);
 
@@ -27,9 +28,9 @@ public class ShapeSelectionPage {
         panel.add(imageLabel);
 
         // 텍스트 라벨 생성 (오른쪽 위)
-        JLabel instructionLabel = new JLabel("면적 구하는 공식을 모르는 도형을 클릭해봐~");
+        JLabel instructionLabel = new JLabel("<html>너가 넓이 구하는 공식을 모르는 도형을 클릭해봐~ <br>그럼 내가 알려줄게~<br>");
         instructionLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        instructionLabel.setFont(new Font(null, Font.PLAIN, 21)); // 폰트 설정 (null, plain, 크기 20)
+        instructionLabel.setFont(new Font(null, Font.PLAIN, 18)); // 폰트 설정 (null, plain, 크기 20)
         instructionLabel.setBounds(350, 30, 600, 50); // 위치 및 크기 조정
         panel.add(instructionLabel);
 

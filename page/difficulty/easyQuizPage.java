@@ -23,34 +23,45 @@ public class easyQuizPage extends JFrame {
     private JButton hint;
     private String hintMessage;
 
+
     public easyQuizPage(PageLoadingManager pageLoadingManager) {
         this.pageLoadingManager = pageLoadingManager;
 
-        setTitle("도형 넓이 구하는 게임!");
+        setTitle("쉬움 난이도");
         setSize(1980, 1080);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
 
-        JLabel difficultyLabel = new JLabel("쉬움");
-        difficultyLabel.setBounds(20, 10, 100, 25);
-        add(difficultyLabel);
+        JPanel backgroundPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                ImageIcon background = new ImageIcon("img/bg 6.png"); // 배경 이미지 경로 설정
+                g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+        backgroundPanel.setLayout(null);
+        setContentPane(backgroundPanel); // JFrame의 콘텐츠 팬을 배경 패널로 설정
 
         scoreManager = new scoreManager();
         scoreLabel = new JLabel("점수 : " + scoreManager.getScore());
-        scoreLabel.setBounds(140, 10, 100, 25);
+        scoreLabel.setFont(new Font("맑은 고딕", Font.PLAIN, 30)); // 폰트 크기 설정
+        scoreLabel.setBounds(20, 10, 200, 40);
         add(scoreLabel);
 
         shapeLabel = new JLabel();
-        shapeLabel.setBounds(150, 50, 200, 200);
+        shapeLabel.setBounds(730, 220, 300, 300);
         add(shapeLabel);
 
         sizeLabel = new JLabel();
-        sizeLabel.setBounds(150, 260, 500, 25);
+        sizeLabel.setFont(new Font("맑은 고딕", Font.PLAIN, 30)); // 폰트 크기 설정
+        sizeLabel.setBounds(750, 550, 700, 40);
         add(sizeLabel);
         displayRandomShape(shapeLabel, sizeLabel);
 
-        JLabel questionLabel = new JLabel("이 도형의 넓이는 얼마인가요?");
-        questionLabel.setBounds(400, 50, 300, 25);
+        JLabel questionLabel = new JLabel("이 도형의 넓이는 얼마일까?");
+        questionLabel.setFont(new Font("맑은 고딕", Font.BOLD, 50)); // 폰트 크기 설정
+        questionLabel.setBounds(560, 120, 700, 100);
         add(questionLabel);
 
         JButton option1 = new JButton(options[0]);
@@ -61,16 +72,19 @@ public class easyQuizPage extends JFrame {
         option2.addActionListener(e -> checkAnswer(Double.parseDouble(options[1])));
         option3.addActionListener(e -> checkAnswer(Double.parseDouble(options[2])));
 
-        option1.setBounds(300, 150, 80, 40);
-        option2.setBounds(400, 150, 80, 40);
-        option3.setBounds(500, 150, 80, 40);
+        option1.setBounds(600, 650, 130, 60);
+        option1.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+        option2.setBounds(800, 650, 130, 60);
+        option2.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+        option3.setBounds(1000, 650, 130, 60);
+        option3.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 
         add(option1);
         add(option2);
         add(option3);
 
-        hint = new JButton(new ImageIcon("img/ping.png"));
-        hint.setBounds(1000, 150, 300, 300);
+        hint = new JButton(new ImageIcon("img/ping5.png"));
+        hint.setBounds(1100, 280, 260, 260);
         hint.setBorderPainted(false);
 
         // 어댑터 클래스를 사용하여 힌트 버튼의 동작 정의
@@ -93,7 +107,7 @@ public class easyQuizPage extends JFrame {
 
         switch (selectedShape) {
             case "삼각형":
-                imagePath = "img//triangle.png";
+                imagePath = "img/triangle 2.png";
                 int base = (random.nextInt(4) + 1) * 2;
                 int height = (random.nextInt(4) + 1) * 2;
                 sizeText = "밑변: " + base + ", 높이: " + height;
@@ -102,7 +116,7 @@ public class easyQuizPage extends JFrame {
                 hintMessage = "삼각형 넓이는 ( □ x □ ) / 2 야~ ";
                 break;
             case "삼각형_2":
-                imagePath = "img//triangle 2.png";
+                imagePath = "img/triangle 2.png";
                 int base_2 = (random.nextInt(4) + 1) * 2;
                 int height_2 = (random.nextInt(4) + 1) * 2;
                 sizeText = "밑변: " + base_2 + ", 높이: " + height_2;
@@ -111,7 +125,7 @@ public class easyQuizPage extends JFrame {
                 hintMessage = "삼각형 넓이는 ( 밑변 x 높이 ) / 2 야~ ";
                 break;
             case "사각형":
-                imagePath = "img//rectangle.png";
+                imagePath = "img/rectangle.png";
                 int side1 = random.nextInt(4) + 1;
                 int side2 = random.nextInt(4) + 1;
                 sizeText = "한변: " + side1 + ", 한변: " + side2;
@@ -120,7 +134,7 @@ public class easyQuizPage extends JFrame {
                 hintMessage = "사각형의 넓이는 ( 밑변 x 높이 ) 야~ ";
                 break;
             case "사각형_2":
-                imagePath = "img//rectangle 3.png";
+                imagePath = "img/rectangle.png";
                 int side3 = random.nextInt(4) + 1;
                 int side4 = random.nextInt(4) + 1;
                 sizeText = "한변: " + side3 + ", 한변: " + side4;
@@ -139,7 +153,7 @@ public class easyQuizPage extends JFrame {
         }
 
         ImageIcon originalIcon = new ImageIcon(imagePath);
-        Image scaledImage = originalIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        Image scaledImage = originalIcon.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
         shapeLabel.setIcon(new ImageIcon(scaledImage));
         sizeLabel.setText(sizeText);
 
