@@ -18,6 +18,7 @@ public class normalDifficultyPage extends JFrame {
     public JLabel sizeLabel;
     private scoreManager scoreManager;
     private JLabel scoreLabel;
+    private JLabel info;
     private JLabel h1;
     private JLabel h2;
     private JLabel h3;
@@ -49,7 +50,7 @@ public class normalDifficultyPage extends JFrame {
 
         scoreManager = new scoreManager();
         scoreLabel = new JLabel("점수 : " + scoreManager.getScore());
-        scoreLabel.setFont(new Font("맑은 고딕", Font.PLAIN, 30)); // 폰트 크기 설정
+        scoreLabel.setFont(new Font("맑은 고딕", Font.BOLD, 30)); // 폰트 크기 설정
         scoreLabel.setBounds(20, 10, 200, 40);
         add(scoreLabel);
 
@@ -59,7 +60,7 @@ public class normalDifficultyPage extends JFrame {
 
         sizeLabel = new JLabel();
         sizeLabel.setFont(new Font("맑은 고딕", Font.BOLD, 40)); // 폰트 크기 설정
-        sizeLabel.setBounds(500, 140, 1000, 70);
+        sizeLabel.setBounds(600, 140, 1000, 70);
         add(sizeLabel);
 
         h1 = new JLabel();
@@ -69,7 +70,7 @@ public class normalDifficultyPage extends JFrame {
         h3 = new JLabel();
         h3.setBounds(360, 0, 60, 60);
 
-        ImageIcon heartIcon = new ImageIcon("img/heart.jpg");
+        ImageIcon heartIcon = new ImageIcon("img/heart.png");
         h1.setIcon(heartIcon);
         h2.setIcon(heartIcon);
         h3.setIcon(heartIcon);
@@ -90,7 +91,7 @@ public class normalDifficultyPage extends JFrame {
         displayRandomShape(shapeLabel, sizeLabel);
 
         JLabel difficultyLabel = new JLabel("생명 : ");
-        difficultyLabel.setFont(new Font("맑은 고딕", Font.PLAIN, 30));
+        difficultyLabel.setFont(new Font("맑은 고딕", Font.BOLD, 30));
         difficultyLabel.setBounds(170, 12, 100, 35);
         add(difficultyLabel);
 
@@ -131,14 +132,22 @@ public class normalDifficultyPage extends JFrame {
                 imagePath = "img/triangle 2.png";
                 int base = (random.nextInt(5) + 1) * 2;
                 int height = (random.nextInt(5) + 1) * 2;
-                sizeText = "삼각형의 넓이를 구하시오. 밑변 a: " + base + ", 높이 h: " + height;
+                sizeText = "이 도형의 넓이는 얼마일까~?";
+                info = new JLabel("밑변 a: " + base + ", 높이 h: " + height);
+                info.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+                info.setBounds(720,510,1000,50);
+                add(info);
                 answer = (double) (base * height) / 2;
                 solutionProcess = "삼각형 넓이 = (밑변 x 높이) ÷ 2";
                 break;
 
             case "삼각형2":
                 imagePath = "img/triangle 3.png";
-                sizeText = "삼각형의 높이(h)를 구하시오. 넓이 :9";
+                sizeText = "이 도형의 높이는 얼마일까~?";
+                info = new JLabel("넓이 :9");
+                info.setBounds(720,510,1000,50);
+                info.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+                add(info);
                 answer = 6;
                 solutionProcess = "삼각형 넓이 = (밑변 x 높이) ÷ 2";
                 break;
@@ -147,26 +156,39 @@ public class normalDifficultyPage extends JFrame {
                 imagePath = "img/rectangle 2.png";
                 int side1 = random.nextInt(4) + 1;
                 int side2 = random.nextInt(4) + 1;
-                sizeText = "사각형의 넓이를 구하시오. 가로 a: " + side1 + ", 세로 b: " + side2;
+                sizeText = "이 도형의 넓이는 얼마일까~?";
+                info = new JLabel("가로 a: " + side1 + ", 세로 b: " + side2);
+                info.setBounds(720,510,1000,50);
+                info.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+                add(info);
                 answer = side1 * side2;
                 solutionProcess = "사각형 넓이 = (가로 x 세로)";
                 break;
 
             case "사각형2":
                 imagePath = "img/rectangle 3.png";
-                sizeText = "사각형의 세로(b)를 구하시오. 넓이 : 35";
+                sizeText = "이 도형의 높이는 얼마일까~?";
+                info = new JLabel("넓이 : 35");
+                info.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+                info.setBounds(720,510,1000,50);
+                add(info);
                 answer = 7;
                 solutionProcess = "사각형 넓이 = (가로 x 세로)";
                 break;
 
             case "원":
                 imagePath = "img/one 2.png";
-                int r = random.nextInt(10) + 1;
-                sizeText = "원의 넓이를 구하고 소수 둘째자리에서 반올림하시오. 반지름 r: " + r;
+                int r = random.nextInt(3) + 1;
+                sizeText = "이 도형의 넓이는 얼마일까~?";
+                info = new JLabel("반지름 r : " + r + " 소수 둘째자리까지 반올림 해줘");
+                info.setBounds(720,510,1000,50);
+                info.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+                add(info);
                 answer = Math.round((r * r * 3.14) * 100.0) / 100.0;
                 solutionProcess = "원 넓이 = (3.14 * 반지름 x 반지름)";
                 break;
         }
+
         ImageIcon originalIcon = new ImageIcon(imagePath);
         Image scaledImage = originalIcon.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
         shapeLabel.setIcon(new ImageIcon(scaledImage));

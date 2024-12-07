@@ -12,8 +12,8 @@ public class startPage extends JFrame {
     private JLabel gameLabel;
 
     public startPage() {
-        setTitle("도형 넓이 구하는 게임!");
-        setSize(1920, 1080);
+        setTitle("티니핑과 함께하는 도형 넓이 구하기");
+        setSize(1980, 1080);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
 

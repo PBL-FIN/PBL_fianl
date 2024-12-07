@@ -26,7 +26,7 @@ public class EndPage extends JFrame {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                ImageIcon background = new ImageIcon("img/end1.jpg"); //
+                ImageIcon background = new ImageIcon("img/end2.jpg"); //
                 g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), this);
             }
         };
@@ -48,7 +48,6 @@ public class EndPage extends JFrame {
         score = new JLabel("최종 점수는 " + scoreManager.getScore() + "점이야~");
         score.setFont(new Font("맑은 고딕", Font.BOLD, 40));
         score.setBounds(100, 250, 600, 100);
-        score.setForeground(Color.WHITE); //
         add(score);
 
         // 메뉴로 가기 버튼

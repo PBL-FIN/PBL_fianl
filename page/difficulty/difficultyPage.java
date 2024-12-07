@@ -1,6 +1,5 @@
 package page.difficulty;
 
-import page.hintPage;
 import problem.PageLoadingManager;
 import problem.lifeManager;
 
@@ -17,7 +16,7 @@ public class difficultyPage extends JFrame {
     private lifeManager lifeManager = new lifeManager();
 
     public difficultyPage() {
-        setTitle("도형 넓이 구하는 게임!");
+        setTitle("난이도 선택");
         setSize(1980, 1080);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
@@ -55,7 +54,7 @@ public class difficultyPage extends JFrame {
                 int response = JOptionPane.showConfirmDialog(null, selectedDifficulty + "으로 가볼까?", "난이도 선택", JOptionPane.YES_NO_OPTION);
                 if (response == JOptionPane.YES_OPTION) {
                     dispose();
-                    new hintPage();
+                    new easyQuizPage(pageLoadingManager);
                 }
             }
         });
@@ -74,9 +73,4 @@ public class difficultyPage extends JFrame {
         button.setOpaque(true); // 배경색을 보이게 하려면 true로 설정
         button.setCursor(new Cursor(Cursor.HAND_CURSOR)); // 마우스 커서 변경
     }
-
-    public static void main(String[] args) {
-        new difficultyPage();
-    }
-
 }
